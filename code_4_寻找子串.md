@@ -17,7 +17,7 @@
 	        let temp = str[i];
 	        if(map[temp] != undefined){
 	            if(max_len<temp_len){
-	            	max_len = temp_len;
+	                max_len = temp_len;
 	            }
 	            map = {};
 	            temp_len = 0;
