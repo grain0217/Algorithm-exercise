@@ -13,25 +13,25 @@
 	        start = 0,
 	        len = str.length,
 	        temp;
-	        for(let i = 0; i < len; i++){
+	    for(let i = 0; i < len; i++){
                 if(len-i < max/2){ //剩余长度小于max的一半，则不可能找到比max更长的回文串
-                break;
-            }
-            let left = i,
-                right = i;
+                    break;
+                }
+                let left = i,
+                    right = i;
                 while(right < len-1 && str[right] == str[right+1]){ //连续相同字母必定是回文串的一部分，直接跳过
-                right++;			            //从这串相同字母的前一位和后一位开始比较
+                    right++;			            //从这串相同字母的前一位和后一位开始比较
+                }
+                i = right;
+                while(left > 0 && right < len-1 && str[left-1] == str[right+1]){  //从i中间往两侧比较
+            	    left--;
+            	    right++;
+                }
+                temp = right - left + 1;
+                if(temp > max){
+            	    max = temp;
+            	    start = left;
+                }
             }
-            i = right;
-            while(left > 0 && right < len-1 && str[left-1] == str[right+1]){  //从i中间往两侧比较
-            	left--;
-            	right++;
-            }
-            temp = right - left + 1;
-            if(temp > max){
-            	max = temp;
-            	start = left;
-            }
-        }
-        return str.substr(start, max);
+            return str.substr(start, max);
 	}
