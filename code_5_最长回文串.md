@@ -24,8 +24,8 @@
             }
             i = right;
             while(left > 0 && right < len-1 && str[left-1] == str[right+1]){  //从i中间往两侧比较
-                left--;
-                right++;
+           	    left--;
+           	    right++;
             }
             temp = right - left + 1;
             if(temp > max){
