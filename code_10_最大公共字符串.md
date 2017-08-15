@@ -41,19 +41,20 @@
             len_substr = 0,
             pos = 0;
         for (let i = 0; i<len1; i++) {
+            arr[i] = new Array(len2);
             for (let j = 0; j < len2; j++) {
                 if (str1[i] == str2[j]) {
                     if(i == 0 || j == 0){
-                        arr[i,j] = 1;
+                        arr[i][j] = 1;
                     }else{
-                        arr[i,j] = arr[i-1,j-1] + 1;
+                        arr[i][j] = arr[i-1][j-1] + 1;
                     }
                     if (arr[i][j] > len_substr) {
-                        len_substr = arr[i,j];
-                        pos = i;
+                        len_substr = arr[i][j];
+                        pos = i - len_substr + 1;
                     }
                 }else{
-                    arr[i,j] = 0;
+                    arr[i][j] = 0;
                 }
             }
         }
