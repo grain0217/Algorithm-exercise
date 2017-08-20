@@ -24,7 +24,7 @@
         return str1.substr(pos, len_substr);
     }
     
-时间复杂度：O(n^3)，时间复杂度是O(1)。
+时间复杂度：O(n^3)，空间复杂度是O(1)。
 
 ---
 
@@ -60,3 +60,5 @@
         }
         return str1.substr(pos, len_substr); 
     }
+    
+时间复杂度O(n^2)，空间复杂度O(n^2)。注意到每次比较只用到相邻两行，可以将空间复杂度优化到O(n)。
