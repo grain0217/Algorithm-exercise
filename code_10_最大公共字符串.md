@@ -2,7 +2,7 @@
 
 暴力求解：
 
-    let longest_substring = (str1, str2) => {
+    const longest_substring = (str1, str2) => {
         let len1 = str1.length,
             len2 = str2.length,
             len_substr = 0,
@@ -34,7 +34,7 @@
 
 其中d[i,j]表示以str1[i]、str2[j]结尾的字符串的最长公共子字符串的长度。
 
-    let dp_longest_substring = (str1, str2) => {
+    const dp_longest_substring = (str1, str2) => {
         let len1 = str1.length,
             len2 = str2.length,
             arr = new Array(len1),

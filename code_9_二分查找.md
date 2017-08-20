@@ -1,6 +1,6 @@
 ##### 二分查找
 
-	let binary_search = (arr, left, right, number) => {
+	const binary_search = (arr, left, right, number) => {
 	    let mid = ~~((left + right) / 2);  //注意这里的坑
 	    if (left == right && arr[mid] != number) {
 	        return -1;
@@ -23,7 +23,7 @@
 
 ##### 非递归的二分查找
 
-	let binary_search = (arr, target) => {
+	const binary_search = (arr, target) => {
 	    let left = 0,
 	        right = arr.length - 1;
 	    while (left < right) {
@@ -36,7 +36,7 @@
 	            right = mid - 1;
 	        }
 	    }
-	    if(arr[left] == target){
+	    if(arr[left] == target){    //最终在left==right循环中止时要做判断
 	        return left;
 	    } else {
 	        return -1;
