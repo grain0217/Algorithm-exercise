@@ -53,8 +53,8 @@
                      if (j == 0) {
                          min = arr[i - coins[0]] + 1;
                          if(!Number.isInteger(arr[i-coins[0]])){
-						    min = unreachable;
-						 }
+                            min = unreachable;
+                         }
                      } else if (min > arr[i - coins[j]] + 1 || min == unreachable){
                          min = arr[i - coins[j]] + 1;
                          if(!Number.isInteger(i-coins[j])){
@@ -84,8 +84,8 @@
                  unreachable = "不可到达",
                  len = coins.length;
                  arr = [],
-                 arr[0] = 0;
-             for (let i = 1; i < coins[0]; i++) {
+                 arr[0] = 0;
+             for (let i = 1; i < coins[0]; i++) {
                 arr[i] = unreachable;
              }
              for (let i = coins[0]; i <= target; i++) {
