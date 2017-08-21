@@ -84,8 +84,8 @@
                  unreachable = "不可到达",
                  len = coins.length;
                  arr = [],
-                 arr[0] = 0,
-             for (let i = 1; i < coins[0]; i++) {
+                 arr[0] = 0;
+             for (let i = 1; i < coins[0]; i++) {
                 arr[i] = unreachable;
              }
              for (let i = coins[0]; i <= target; i++) {
