@@ -42,7 +42,7 @@
         } else if (n == 0 && m != 0) {
             return ways(m-1, n) + matrix[m][n];
         } else {
-                return ways(m-1, n) > ways(m, n-1) ? ways(m-1, n) + matrix[m][n] : ways(m, n-1) + matrix[m][n];
+            return ways(m-1, n) > ways(m, n-1) ? ways(m-1, n) + matrix[m][n] : ways(m, n-1) + matrix[m][n];
         }
     }
 
