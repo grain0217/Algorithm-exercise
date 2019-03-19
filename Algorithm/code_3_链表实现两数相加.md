@@ -7,43 +7,75 @@
 
 >返回: 7 -> 0 -> 8
 
-提示，这道题需要考虑溢出问题。
+这道题需要考虑溢出问题。如果这两个数的存储是用list来实现的话，最简单的思路是倒序相加，如果满十下一次相加需要进位：
+```
+  var addTwoNumbers = function(l1, l2) {
+    let length1 = l1.length
+    length2 = l2.length
+    max = length1 > length2 ? length1 : length2
+    result = []
+    carryOver = false
 
-首先,[链表的JavaScript实现](https://github.com/sanjdw/Code-in-this-summer/blob/master/%E5%8D%95%E5%90%91%E9%93%BE%E8%A1%A8%E7%9A%84JavaScript%E5%AE%9E%E7%8E%B0.md)：
+    for (let i = 0; i < max; i++) {
+      let carry_over = carryOver ? 1 : 0
+      let tmpRes = (l1[i] || 0) + (l2[i] || 0) + carry_over
+      if (tmpRes >= 10) {
+        result.push(tmpRes - 10)
+        carryOver = true
+      } else {
+        result.push(tmpRes)
+        carryOver = false
+      }
+    }
+    if (carryOver) {
+      if (tmpRes >= 10) {
+        result.push(1)
+      }
+    }
+    return result
+};
+```
 
-		import LinkedList, {Node} from '****'
-		const linkA = new LinkedList(2);
-		linkA.append(4);
-		linkA.append(3);
+leetCode上这道题加数的存储需要用ListNode链表实现，并给出了JavaScript链表结构：
+```
+  function ListNode(val) {
+    this.val = val;
+    this.next = null;
+  }
 
-		const linkB = new LinkedList(5);
-		linkB.append(6);
-		linkB.append(4);
+  import LinkedList, {Node} from '****'
+  const linkA = new LinkedList(2);
+  linkA.append(4);
+  linkA.append(3);
 
-		const ret = resolve(linkA, linkB);
+  const linkB = new LinkedList(5);
+  linkB.append(6);
+  linkB.append(4);
 
-		const resolve = (a,b) => {
-			const alen = a.length;
-			const blen = b.length;
-			let count = Math.max(alen, blen);
-			let target = a.head, plus = b.head;
-			if (alen < blen) {
-				target = b.head;
-			    plus = a.head;
-			}
-			while(count--) {
-			    const sum = target.element + ( plus && plus.element || 0);
-			    const bits = sum % 10;
-			    const tens = ~~(sum / 10);
-			    target.element = bits;
-			    if (tens && !target.next) {
-			        target.next = new Node(tens);
-			    } else if (tens) {
-			        target.next.element = target.next.element + tens;
-			    }
-			    target = target.next;
-			    plus = plus && plus.next || null;
-			  }
-			return alen < blen ? b : a;
-		}
+  const ret = addTwoNumbers(linkA, linkB);
+
+  const addTwoNumbers = (l1, l2) => {
+  const l1_len = l1.length;
+  const l2_len = l2.length;
+  let count = Math.max(l1_len, l2_len);
+  let target = l1.head, plus = l2.head;
+  if (l1len < l2len) {
+    target = l2.head;
+    plus = l1.head;
+  }
+  while(count--) {
+    const sum = target.element + ( plus && plus.element || 0);
+    const bits = sum % 10;
+    const tens = ~~(sum / 10);
+    target.element = bits;
+    if (tens && !target.next) {
+      target.next = new Node(tens);
+    } else if (tens) {
+      target.next.element = target.next.element + tens;
+    }
+    target = target.next;
+    plus = plus && plus.next || null;
+  }
+  return l1_len < l2_len ? l2 : l1;
+}
 
