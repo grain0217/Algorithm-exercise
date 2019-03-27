@@ -7,7 +7,7 @@
 
 >返回: 7 -> 0 -> 8
 
-这道题需要考虑溢出问题。如果这两个数的存储是用list来实现的话，最简单的思路是倒序相加，如果满十下一次相加需要进位：
+这道题需要考虑溢出问题。最简单的思路是倒序相加，如果满十下一次相加需要进位,如果这两个数的存储是用list来实现的话：
 ```
   var addTwoNumbers = function(l1, l2) {
     let length1 = l1.length
@@ -39,43 +39,48 @@
 leetCode上这道题加数的存储需要用ListNode链表实现，并给出了JavaScript链表结构：
 ```
   function ListNode(val) {
-    this.val = val;
-    this.next = null;
+    this.val = val
+    this.next = null
   }
 
-  import LinkedList, {Node} from '****'
-  const linkA = new LinkedList(2);
-  linkA.append(4);
-  linkA.append(3);
-
-  const linkB = new LinkedList(5);
-  linkB.append(6);
-  linkB.append(4);
-
-  const ret = addTwoNumbers(linkA, linkB);
-
-  const addTwoNumbers = (l1, l2) => {
-  const l1_len = l1.length;
-  const l2_len = l2.length;
-  let count = Math.max(l1_len, l2_len);
-  let target = l1.head, plus = l2.head;
-  if (l1len < l2len) {
-    target = l2.head;
-    plus = l1.head;
-  }
-  while(count--) {
-    const sum = target.element + ( plus && plus.element || 0);
-    const bits = sum % 10;
-    const tens = ~~(sum / 10);
-    target.element = bits;
-    if (tens && !target.next) {
-      target.next = new Node(tens);
-    } else if (tens) {
-      target.next.element = target.next.element + tens;
+  var addTwoNumbers = function(l1, l2) {
+    const head = l1
+    let overflow = false
+    if (!l1) {
+      if (l2) {
+        return l2
+      } else {
+        return new ListNode(0)
+      }
     }
-    target = target.next;
-    plus = plus && plus.next || null;
-  }
-  return l1_len < l2_len ? l2 : l1;
-}
+    while (l1) {
+      let tmp = l1.val + ((l2 || {}).val || 0) + (overflow ? 1 : 0)
+      if (tmp >= 10) {
+        l1.val = tmp -10
+        overflow = true
+      } else {
+        l1.val = tmp
+        overflow = false
+      }
+      if (l1.next) {
+        l1 = l1.next
+        l2 = (l2 || {}).next
+      } else if (l2 && l2.next) {
+        l1.next = l2.next
+        l1 = l1.next
+        l2 = null
+      } else {
+        l1.next = overflow ? new ListNode(1) : null
+        l1 = null
+      }
+    }
+    return head
+  };
+```
+纠结了很长时间，用链表来做的话最初卡在如何构造一个结果（两数之和）链表并遍历它的节点来为之赋值，其实在直接用l1来做结果链表，在遍历l1，l2每一个节点时将加数落在l1上即可，节省了空间。注意循环截止的条件、边界判断。
 
+###Todo:还有优化的空间
+**执行用时 : 216 ms, 在Add Two Numbers的JavaScript提交中击败了27.67% 的用户**
+**内存消耗 : 38.7 MB, 在Add Two Numbers的JavaScript提交中击败了0.86% 的用户**
+
+另外还有一个偷懒的办法。
