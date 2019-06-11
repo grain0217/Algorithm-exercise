@@ -8,7 +8,7 @@ class Node {
 class LinkedList {
 	length = 0
 	head = null
-
+	
 	constructor (element) {
 		if (element) {
 			this.head = new Node(element)
@@ -30,7 +30,7 @@ class LinkedList {
 		}
 		this.length++
 	}
-
+	
 	// 指定位置插入元素
 	insert (element, position) {
 		if (position < 0 || position > this.length) {
@@ -38,11 +38,11 @@ class LinkedList {
 		} else {
 			const node = new Node(element)
 			if (position === 0) {
-			node.next = this.head
+				node.next = this.head
 				this.head = node
 			} else {
 				let cur = 0,
-						target = this.head
+					target = this.head
 				while (cur++ < position) {
 					target = target.next
 				}
@@ -75,11 +75,11 @@ class LinkedList {
 			return true
 		}
 	}
-
+	
 	// 查找一个元素的位置
 	indexOf (element) {
 		let cur = 0,
-				target = this.head
+			target = this.head
 		while (target.element != element) {
 			target = target.next
 			cur++
@@ -90,7 +90,7 @@ class LinkedList {
 			return -1
 		}
 	}
-
+	
 	// 删除元素
 	remove (element) {
 		const position = this.indexOf(element)
@@ -100,7 +100,7 @@ class LinkedList {
 			removeAt(position)
 		}
 	}
-
+	
 	// 清空链表
 	clear () {
 		this.lenght = 0
