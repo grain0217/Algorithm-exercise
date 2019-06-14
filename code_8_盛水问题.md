@@ -12,7 +12,7 @@
             maxIndex = [];
         for(let i = 0; i < len; i++){
             for (let j = i+1; j < len; j++) {
-                temp = Math.min(arr[i], arr[j]) * (j - i);
+                temp = Math.min(arr[i], arr[j]) * Math.pow((j - i), 2);
                 if(temp > maxContainer){
                     maxContainer = temp;
                     maxIndex = [i,j];
