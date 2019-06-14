@@ -79,4 +79,36 @@ class binaryTree {
       callback(node.element)
     }
   }
+
+  // 查找最小节点
+  minNode () {
+    let cur = this.root
+    while (cur.left) {
+      cur = cur.next
+    }
+    return cur
+  }
+
+  // 查找最大节点
+  maxNode () {
+    let cur = this.root
+    while(cur.right) {
+      cur = cur.right
+    }
+    return cur
+  }
+  // 查找指定节点
+  find (element) {
+    let cur = this.root
+    while (cur) {
+      if (element > cur.element) {
+        cur = cur.right
+      } else if (element < cur.element) {
+        cur = cur.left
+      } else if (cur.element === element) {
+        return cur
+      }
+    }
+    return false
+  }
 }
