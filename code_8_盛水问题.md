@@ -6,18 +6,18 @@
 暴力求解：
 
     const container_index = arr => {
-        let len = arr.length,
-            maxContainer = 0,
-            temp = 0,
-            maxIndex = [];
-        for(let i = 0; i < len; i++){
-            for (let j = i+1; j < len; j++) {
-                temp = Math.min(arr[i], arr[j]) * Math.pow((j - i), 2);
-                if(temp > maxContainer){
-                    maxContainer = temp;
-                    maxIndex = [i,j];
-                }
-            }
+      let len = arr.length,
+          maxContainer = 0,
+          temp = 0,
+          maxIndex = []
+      for(let i = 0; i < len; i++){
+        for (let j = i+1; j < len; j++) {
+          temp = Math.min(arr[i], arr[j]) * Math.pow((j - i), 2)
+          if(temp > maxContainer) {
+            maxContainer = temp
+            maxIndex = [i,j]
+          }
         }
-        return maxIndex;
+      }
+      return maxIndex;
     }
