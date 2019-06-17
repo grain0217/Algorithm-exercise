@@ -7,12 +7,17 @@ const mergeSort = arr => {
 }
 
 const merge = (arr1, arr2) => {
-  let i = j = 0
+  let i = 0,
+      j = 0
   const len1 = arr1.length
   const len2 = arr2.length
   let arr = []
-  while (i < len1 || j < len2 && i + j !== len1 + len2) {
-    if (arr1[i] < arr2[j] && arr1[i]) {
+  while (i < len1 || j < len2) {
+    if (arr1[i] == undefined) {
+      arr.push(arr2[j++])
+    } else if (arr2[j] == undefined) {
+      arr.push(arr1[i++])
+    } else if (arr1[i] < arr2[j]) {
       arr.push(arr1[i++])
     } else {
       arr.push(arr2[j++])
