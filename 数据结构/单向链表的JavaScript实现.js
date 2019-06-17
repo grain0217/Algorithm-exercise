@@ -10,7 +10,7 @@ class LinkedList {
   head = null
   
   constructor (element) {
-    if (element) {
+    if (element != null) {
       this.head = new Node(element)
       this.length++
     }
@@ -84,7 +84,7 @@ class LinkedList {
       target = target.next
       cur++
     }
-    if (cur<this.length) {
+    if (cur < this.length) {
       return cur
     } else {
       return -1
@@ -105,5 +105,20 @@ class LinkedList {
   clear () {
     this.lenght = 0
     this.head = null
+  }
+
+  // 链表反转
+  revert () {
+    if (this.head == null) return
+    let cur = this.head
+    let pre = null
+    let next = null
+    while (cur) {
+      next = cur.next
+      cur.next = pre
+      pre = cur
+      cur = next
+    }
+    this.head = pre
   }
 }
