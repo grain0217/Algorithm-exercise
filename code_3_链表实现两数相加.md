@@ -9,12 +9,12 @@
 
 这道题需要考虑溢出问题。最简单的思路是倒序相加，如果满十下一次相加需要进位,如果这两个数的存储是用list来实现的话：
 ```
-  var addTwoNumbers = function(l1, l2) {
+  const addTwoNumbers = function(l1, l2) {
     let length1 = l1.length
-    length2 = l2.length
-    max = length1 > length2 ? length1 : length2
-    result = []
-    carryOver = false
+    let length2 = l2.length
+    const max = length1 > length2 ? length1 : length2
+    const result = []
+    let carryOver = false
 
     for (let i = 0; i < max; i++) {
       let carry_over = carryOver ? 1 : 0
@@ -33,7 +33,7 @@
       }
     }
     return result
-};
+}
 ```
 
 leetCode上这道题加数的存储需要用ListNode链表实现，并给出了JavaScript链表结构：
@@ -43,7 +43,7 @@ leetCode上这道题加数的存储需要用ListNode链表实现，并给出了J
     this.next = null
   }
 
-  var addTwoNumbers = function(l1, l2) {
+  const addTwoNumbers = function(l1, l2) {
     const head = l1
     let overflow = false
     if (!l1) {
@@ -75,12 +75,7 @@ leetCode上这道题加数的存储需要用ListNode链表实现，并给出了J
       }
     }
     return head
-  };
+  }
 ```
+
 纠结了很长时间，用链表来做的话最初卡在如何构造一个结果（两数之和）链表并遍历它的节点来为之赋值，其实在直接用l1来做结果链表，在遍历l1，l2每一个节点时将加数落在l1上即可，节省了空间。注意循环截止的条件、边界判断。
-
-###Todo:还有优化的空间
-**执行用时 : 216 ms, 在Add Two Numbers的JavaScript提交中击败了27.67% 的用户**
-**内存消耗 : 38.7 MB, 在Add Two Numbers的JavaScript提交中击败了0.86% 的用户**
-
-另外还有一个偷懒的办法。
