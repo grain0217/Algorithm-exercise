@@ -10,11 +10,10 @@
 
 ```
 const find_longest_substr = str => {
-  let len = str.length,
-      map = {},
-      temp_len = 0,
-      max_len = 0
-  for (let i = 0; i < len; i++) {
+  let map = {}
+  let temp_len = 0
+  let max_len = 0
+  for (let i = 0; i < str.length; i++) {
     let temp = str[i]
     if (map[temp] != undefined) {
       if (max_len < temp_len) {
