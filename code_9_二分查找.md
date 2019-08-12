@@ -13,7 +13,7 @@ const binary_search = (arr, left, right, target) => {
     } else {
       right = mid - 1
     }
-    return binary_search(arr, left, right, number)
+    return binary_search(arr, left, right, target)
   }
 }
 ```
@@ -23,8 +23,8 @@ const binary_search = (arr, target) => {
   let left = 0,
     right = arr.length - 1
   while (left < right) {
-    mid = ~~((left + right) / 2)
-    if (arr[mid] == target) {
+    let mid = ~~((left + right) / 2)
+    if (arr[mid] === target) {
       return mid
     } else if (arr[mid] < target) {
       left = mid + 1
@@ -32,13 +32,13 @@ const binary_search = (arr, target) => {
       right = mid - 1
     }
   }
-  if(arr[left] == target){	//最终在left==right循环中止时要做判断
+  if(arr[left] === target){	//最终在left==right循环中止时要做判断
     return left
   } else {
     return -1
   }
 }
-  ```
+```
 
 顺便总结一下JavaScript中数字的模运算和取余：
 
