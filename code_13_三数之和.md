@@ -12,12 +12,12 @@
 	const three_index = arr => {
 	    let len = arr.length,
 	        all = [],
-	        temp_nums = [];
+	        temp_nums = []
 	    for(let i = 0; i<len; i++){
-	        let two_nums = two_index(arr.slice(i+1), -arr[i], i+1);
+	        let two_nums = two_index(arr.slice(i+1), -arr[i], i+1)
 	        if(two_nums){
 	            temp_nums = two_nums.concat(i)
-	            all.push(temp_nums.sort(compare));
+	            all.push(temp_nums.sort(compare))
 	        }
 	    }
 	    return all;
@@ -25,17 +25,17 @@
 
 	const two_index = (arr, target, delta) => {
 	    let len = arr.length,
-	        obj = {};
+	        obj = {}
 	    for (let i = 0; i < len; i++) {
-	        let temp = target - arr[i];
+	        let temp = target - arr[i]
 	        if(obj[temp] != undefined){
-	            return [obj[temp]+delta, i+delta];
+	            return [obj[temp]+delta, i+delta]
 	        }
-	        obj[arr[i]] = i;
+	        obj[arr[i]] = i
 	    }
-	    return false;
+	    return false
 	}
 
 	const compare = (a, b) => {
-	    return a-b;
+	    return a - b
 	}

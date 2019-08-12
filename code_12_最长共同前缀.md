@@ -10,34 +10,34 @@
     const shortest_str = arr => {
         let len = arr.length,
             min = arr[0].length,
-            index = 0;
+            index = 0
         for(let i = 0; i < len; i++){
-            let temp = arr[i].length;
+            let temp = arr[i].length
             if(temp < min){
-                max = temp;
-                index = i;
+                max = temp
+                index = i
             }
         }
-        return index;
+        return index
     }
 
     const longest_common_prefix = arr => {
         let short_str = arr[shortest_str(arr)],
             max = short_str.length,
             leng = arr.length,
-            temp = max;
+            temp = max
         for(let i = 0; i < leng; i++){
             for (let j = 0; j < max; j++) {
                 if(short_str[j] != arr[i][j]){
                     temp = j;
-                    break;
+                    break
                 }
             }
             if(temp < max){
-                max = temp;
+                max = temp
             }
         }
-        return short_str.substr(0, max);
+        return short_str.substr(0, max)
     }
 
 

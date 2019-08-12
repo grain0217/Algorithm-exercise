@@ -12,24 +12,24 @@
         let stack = new Array();
         for(let i in str){
             let temp = str[i];
-            if("({[".includes(temp)){	//str[i] == (、{或[
-                stack.push(temp);
-            }else if(")" == temp){
+            if ("({[".includes(temp)) {	//str[i] == (、{或[
+                stack.push(temp)
+            } else if(")" == temp) {
                 if(stack.pop() != "("){
-                    return false;
+                    return false
                 }
-            }else if("}" == temp){
+            } else if("}" == temp) {
                 if(stack.pop() != "{"){
-                    return false;
+                    return false
                 }
-            }else if("]" == temp){
+            } else if("]" == temp) {
                 if(stack.pop() != "["){
-                    return false;
+                    return false
                 }
             }
         }
         if(stack.length == 0){
-            return true;
+            return true
         }
-        return false;
+        return false
     }
