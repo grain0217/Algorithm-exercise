@@ -30,9 +30,9 @@ function longest_substring (str1, str2) {
 
 动态规划求解，找到状态转移方程：
 ```js
-d[i, j] = str[i] == str[j] ? d[i - 1, j - 1] + 1 : 0;
+d[i, j] = str[i] == str[j] ? d[i - 1, j - 1] + 1 : 0
 ```
-其中`d[i,j]`表示以`str1[i]`、`str2[j]`结尾的字符串的最长公共子字符串的长度。
+其中`d[i, j]`表示以`str1[i]`、`str2[j]`结尾的字符串的最长公共子字符串的长度。
 ```js
 const dp_longest_substring = (str1, str2) => {
   const len1 = str1.length
@@ -61,4 +61,4 @@ const dp_longest_substring = (str1, str2) => {
   return str1.substr(pos, len_substr)
 }
 ```
-时间复杂度O(n^2)，空间复杂度O(n^2)。注意到每次比较只用到相邻两行，可以将空间复杂度优化到O(n)。
+时间复杂度`O(n^2)`，空间复杂度`O(n^2)`。注意到每次比较只用到相邻两行，可以将空间复杂度优化到`O(n)`。

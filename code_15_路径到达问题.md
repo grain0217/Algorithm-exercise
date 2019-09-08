@@ -3,11 +3,11 @@
 使用递归，比较简单：
 ```js
 const ways = i => {
-  if (i == 1) {
+  if (i == 2) {
     return 1
-  } else if (i == 2){
+  } else if (i == 3) {
     return 2
-  } else if (i >= 3) {
+  } else if (i >= 4) {
     return ways(i - 1) + ways(i - 2)
   } else {
     return 0
