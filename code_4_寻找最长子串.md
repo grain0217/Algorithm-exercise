@@ -8,8 +8,8 @@
 
 >给定pwwkew，最长的子串为wke，输出3
 
-```
-const find_longest_substr = str => {
+```js
+function find_longest_substr (str) {
   let map = {}
   let temp_len = 0
   let max_len = 0
@@ -25,7 +25,7 @@ const find_longest_substr = str => {
     map[temp] = 1
     temp_len++
   }
-  return max_len>temp_len ? max_len: temp_len // 最后一次的temp_len未比较赋值给max_len
+  return max_len > temp_len ? max_len: temp_len // 最后一次的temp_len未比较赋值给max_len
 }
 ```
 这题直接的想法仍然是暴力求解，用map维护一个已存在的字符串。思路和第一题有点像。

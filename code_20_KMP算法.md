@@ -6,8 +6,8 @@ https://www.zhihu.com/question/21923021/answer/37475572)
 
 首先是构造出用于回退的数组：
 
-```
-const generateNext = pattern => {
+```js
+function generateNext (pattern) {
   const arr = []
   let max_len = 0
   for (let i = 0; i < pattern.length; i++) {
@@ -23,8 +23,8 @@ const generateNext = pattern => {
 }
 ```
 
-```
-const findIndex = (s, p) => {
+```js
+function findIndex (s, p) {
   const next = generateNext(p)
   const positions = []
   let count = 0

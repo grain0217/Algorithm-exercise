@@ -1,6 +1,6 @@
 #### 递归二分查找
-```
-const binary_search = (arr, left, right, target) => {
+```js
+function binary_search (arr, left, right, target) {
   const mid = ~~((left + right) / 2)
   if (left === right && arr[mid] !== target) {
     return -1
@@ -18,10 +18,10 @@ const binary_search = (arr, left, right, target) => {
 }
 ```
 #### 非递归的二分查找
-```
-const binary_search = (arr, target) => {
-  let left = 0,
-    right = arr.length - 1
+```js
+function binary_search (arr, target) {
+  let left = 0
+  let right = arr.length - 1
   while (left < right) {
     let mid = ~~((left + right) / 2)
     if (arr[mid] === target) {
@@ -42,7 +42,7 @@ const binary_search = (arr, target) => {
 
 顺便总结一下JavaScript中数字的模运算和取余：
 
-```
+```js
   7 / 2       // 3.5 商
   ~~(7 / 2)   // 3 模
   7 % 2       // 1 余
