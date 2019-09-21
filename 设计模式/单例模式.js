@@ -28,3 +28,4 @@ instance3 === instance2 // false
 
 // JavaScript的构造函数无法私有化，在外部仍可通过 new singleObject()创建实例
 // 无法完全控制，只好通过类的静态方法来实现
+// 缺点是实例必须通过静态方法创建
