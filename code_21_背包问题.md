@@ -36,3 +36,31 @@ function knapsack (capacity, objectArr) {
   return f[len][capacity]
 }
 ```
+
+贪心算法不能解决0-1背包问题，如果放入背包的物品从本质上说是连续的，则问题变为了特殊的背包问题，可以使用贪心算法解决：
+```
+function knapsack (capacity, objectArr) {
+  // 首先按性价比排序, 高 -> 低
+  objectArr.sort(function (a, b) {
+    return parseFloat(b.value / b.size) - parseFloat(a.value / a.size)
+  })
+  // 记录物品个数
+  const n = objectArr.length
+  // 记录已经选中尺寸，已选最大的最大价值
+  let selected = 0
+  let maxValue = 0
+  for (var i = 0; i < n && selected < capacity; i++) {
+    const size = objectArr[i].size
+    const value = objectArr[i].value
+    if (size <= capacity - selected) {
+      maxValue += value
+      selected += size
+    } else {
+      // 计算比例
+      maxValue += value * ((capacity - selected) / size)
+      selected = capacity
+    }
+  }
+  return maxValue
+}
+```

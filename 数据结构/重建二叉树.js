@@ -1,7 +1,7 @@
 /*
   由先序遍历preOrder和中序遍历inOrder重建二叉树
 */
-class treeNode {
+class BinaryTreeNode {
   constructor (element, left, right) {
     this.element = element
     this.left = left
@@ -20,12 +20,12 @@ const reConstruct = (preOrder, inOrder) => {
     const inOrderLeft = inOrder.slice(0, rootIndex)
     const inOrderRight = inOrder.slice(rootIndex + 1)
 
-    return new treeNode(
+    return new BinaryTreeNode(
       rootElement,
       reConstruct(preOrderLeft, inOrderLeft),
       reConstruct(preOrderRight, inOrderRight),
     )
   } else {
-    return new treeNode(rootElement)
+    return new BinaryTreeNode(rootElement)
   }
 }

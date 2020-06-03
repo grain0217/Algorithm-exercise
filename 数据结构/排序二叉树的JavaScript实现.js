@@ -1,4 +1,4 @@
-class treeNode {
+class BinaryTreeNode {
   constructor (element, left, right) {
     this.element = element
     this.left = left
@@ -6,17 +6,17 @@ class treeNode {
   }
 }
 // 排序二叉树
-class binaryTree {
+class BinaryTree {
   root = null
   constructor (element) {
     if (element) {
-      this.root = new treeNode(element)
+      this.root = new BinaryTreeNode(element)
     }
   }
   
   // 插入节点
   insert (element) {
-    const node = new treeNode(element)
+    const node = new BinaryTreeNode(element)
     if (this.root == null) {
       this.root = node
     } else {
@@ -111,4 +111,17 @@ class binaryTree {
     }
     return false
   }
+
+  // 深度优先遍历
+  DFSTraverse (callback) {
+    this.DFSTraverseNode(this.root, callback)
+  }
+
+  DFSTraverseNode (node, callback) {
+    if (node.element) {
+
+    }
+  }
+
+  // 广度优先遍历
 }
