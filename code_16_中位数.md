@@ -8,68 +8,70 @@
 >给出数组[7, 9, 4, 5]，返回 5
 
 最直接的想法是对数组进行排序然后取中间值，虽然这不是面试官想要的方法，但还是写一下复习下快排：
+```js
+function partition (arr, left, right) {
+  let pivot = arr[left]
+  while (left < right) {
+    while (pivot < arr[right] && left < right) {
+      right--
+    }
+    arr[left] = arr[right]
+    while (arr[left] <= pivot && left < right) {
+      left++
+    }
+    arr[right] = arr[left]
+  }
+  arr[left] = pivot
+  return left
+}
+    
+function quick_sort (arr, left, right) {
+  if (left >= right) {
+    return
+  } else {
+    const	pivotIndex = partition(arr, left, right)
+    quick_sort(arr, left, pivotIndex - 1)
+    quick_sort(arr, pivotIndex + 1, right)
+  }
+}
 
-    const partition = (arr, left, right) => {
-        let pivot = arr[left];
-        while (left < right) {
-            while (pivot < arr[right] && left < right) {
-                right--;
-            }
-            arr[left] = arr[right];
-            while (arr[left] <= pivot && left < right) {
-                left++;
-            }
-            arr[right] = arr[left]
-        }
-        arr[left] = pivot;
-        return left;
-    }
-    
-    const quick_sort = (arr, left, right) => {
-        if (left >= right) {
-            return;
-        }else{
-            let	pivotIndex = partition(arr, left, right);
-            quick_sort(arr, left, pivotIndex-1);
-            quick_sort(arr, pivotIndex+1, right);
-        }
-    }
-    
-    let arr = [1,234,5,76,43,765,765,8,32,6,43,2,5,1,39];
-    quick_sort(arr, 0, arr.length-1);
+let arr = [1,234,5,76,43,765,765,8,32,6,43,2,5,1,39]
+quick_sort(arr, 0, arr.length - 1)
+```
 
 寻找中位数的思路可以借鉴快排，在每次递归返回“标兵”的时候与中间下标做比较，省去了不必要的排序。递归结束的时候中位数就被放在了中间。
-
-    const partition = (arr, left, right) => {
-        let pivot = arr[left],
-            median_index = ~~(arr.length / 2);
-        while (left < right) {
-            while (pivot < arr[right] && left < right) {
-                right--;
-            }
-            arr[left] = arr[right];
-            while (arr[left] <= pivot && left < right) {
-                left++;
-            }
-            arr[right] = arr[left]
-        }
-        arr[left] = pivot;
-        return left;
+```js
+const partition = (arr, left, right) => {
+  const pivot = arr[left]
+  const median_index = ~~(arr.length / 2)
+  while (left < right) {
+    while (pivot < arr[right] && left < right) {
+      right--
     }
-
-    const median = (arr, left, right) => {
-        if (left >= right) {
-            return;
-        }else{
-            let	pivotIndex = partition(arr, left, right),
-                median_index = ~~(arr.length / 2);
-            if(pivotIndex > median_index) {
-                median(arr, left, pivotIndex-1);
-            } else {
-                median(arr, pivotIndex+1, right);
-            }
-        }
+    arr[left] = arr[right]
+    while (arr[left] <= pivot && left < right) {
+      left++
     }
-    
-    let arr = [1,234,5,76,43,765,765,8,32,6,43,2,5,1,39];
-    median(arr, 0, arr.length-1);
+    arr[right] = arr[left]
+  }
+  arr[left] = pivot
+  return left
+}
+
+const median = (arr, left, right) => {
+  if (left >= right) {
+    return
+  } else {
+    const	pivotIndex = partition(arr, left, right)
+    const median_index = ~~(arr.length / 2)
+    if(pivotIndex > median_index) {
+      median(arr, left, pivotIndex - 1)
+    } else {
+      median(arr, pivotIndex + 1, right)
+    }
+  }
+}
+
+let arr = [1,234,5,76,43,765,765,8,32,6,43,2,5,1,39]
+median(arr, 0, arr.length - 1)
+```

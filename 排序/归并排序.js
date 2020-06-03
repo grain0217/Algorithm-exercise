@@ -1,4 +1,4 @@
-const mergeSort = arr => {
+function mergeSort (arr) {
   if (arr.length === 1) return arr
   const mid = ~~(arr.length / 2)
   const left = arr.slice(0, mid)
@@ -6,9 +6,9 @@ const mergeSort = arr => {
   return merge(mergeSort(left), mergeSort(right))
 }
 
-const merge = (arr1, arr2) => {
-  let i = 0,
-      j = 0
+function merge (arr1, arr2) {
+  let i = 0
+  let j = 0
   const len1 = arr1.length
   const len2 = arr2.length
   let arr = []

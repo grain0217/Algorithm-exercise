@@ -8,34 +8,35 @@
 
 首先想到思路是受第一题影响：遍历数组元素ai，每次在剩余数组中寻找和为-ai：
 
-
-	const three_index = arr => {
-	    let len = arr.length,
-	        all = [],
-	        temp_nums = []
-	    for(let i = 0; i<len; i++){
-	        let two_nums = two_index(arr.slice(i+1), -arr[i], i+1)
-	        if(two_nums){
-	            temp_nums = two_nums.concat(i)
-	            all.push(temp_nums.sort(compare))
-	        }
-	    }
-	    return all;
+```js
+function three_index (arr) {
+	const len = arr.length
+	const all = []
+	let temp_nums = []
+	for (let i = 0; i < len; i++) {
+		let two_nums = two_index(arr.slice(i + 1), -arr[i], i + 1);
+		if (two_nums) {
+			temp_nums = two_nums.concat(i)
+			all.push(temp_nums.sort(compare))
+		}
 	}
+	return all
+}
 
-	const two_index = (arr, target, delta) => {
-	    let len = arr.length,
-	        obj = {}
-	    for (let i = 0; i < len; i++) {
-	        let temp = target - arr[i]
-	        if(obj[temp] != undefined){
-	            return [obj[temp]+delta, i+delta]
-	        }
-	        obj[arr[i]] = i
-	    }
-	    return false
+function two_index (arr, target, delta) {
+	const len = arr.length
+	const obj = {}
+	for (let i = 0; i < len; i++) {
+		let temp = target - arr[i]
+		if (obj[temp] != undefined){
+			return [obj[temp] + delta, i + delta]
+		}
+		obj[arr[i]] = i
 	}
+	return false
+}
 
-	const compare = (a, b) => {
-	    return a - b
-	}
+function compare (a, b) {
+	return a - b
+}
+```
