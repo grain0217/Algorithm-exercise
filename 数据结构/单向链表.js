@@ -16,7 +16,7 @@ class LinkedList {
     }
   }
 
-  // 尾部增加元素
+  // 尾部增加节点
   append (element) {
     const node = new Node(element)
     if (this.head == null) {
@@ -31,7 +31,7 @@ class LinkedList {
     this.length++
   }
   
-  // 指定位置插入元素
+  // 指定位置插入节点
   insert (element, position) {
     if (position < 0 || position > this.length) {
       return false
@@ -54,7 +54,7 @@ class LinkedList {
     }
   }
 
-  // 删除指定位置的元素
+  // 删除指定位置的节点
   removeAt (position) {
     if (!this.length) {
       return false
@@ -76,7 +76,7 @@ class LinkedList {
     }
   }
   
-  // 查找一个元素的位置
+  // 查找一个节点的位置
   indexOf (element) {
     let cur = 0,
       target = this.head
@@ -91,7 +91,7 @@ class LinkedList {
     }
   }
   
-  // 删除元素
+  // 删除节点
   remove (element) {
     const position = this.indexOf(element)
     if (position < 0) {
@@ -107,7 +107,10 @@ class LinkedList {
     this.head = null
   }
 
-  // 链表反转
+  /**
+   *  考察点
+   *  链表反转
+   */
   revert () {
     if (this.head == null) return
     let cur = this.head
