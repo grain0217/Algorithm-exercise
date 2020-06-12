@@ -108,8 +108,8 @@ class LinkedList {
   }
 
   /**
-   *  考察点
-   *  链表反转
+   *  考察点：链表反转
+   *  用三个临时指针 prev、cur、next 在链表上循环一遍即可
    */
   revert () {
     if (this.head == null) return

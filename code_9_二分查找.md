@@ -17,6 +17,7 @@ function binary_search (arr, left, right, target) {
   }
 }
 ```
+
 #### 非递归的二分查找
 ```js
 function binary_search (arr, target) {

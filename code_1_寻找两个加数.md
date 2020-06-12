@@ -7,6 +7,7 @@
 >由于 nums[0] + nums[1] = 9，所以返回 [0, 1]
 
 直观可以想到的暴力方法：
+
 ```js
 function find_index (nums, target) {
   for(let i = 0, len = nums.length; i < len; i++) {
@@ -19,7 +20,9 @@ function find_index (nums, target) {
   return -1
 }
 ```
+
 还有一种更好的方法：
+
 ```js
 function find_index_new (nums, target) {
   const result = []
@@ -37,4 +40,5 @@ function find_index_new (nums, target) {
   return -1
 }
 ```
+
 时间复杂度O(n^2) ---> O(n)

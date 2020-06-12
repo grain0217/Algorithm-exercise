@@ -8,6 +8,7 @@
 >给出数组[7, 9, 4, 5]，返回 5
 
 最直接的想法是对数组进行排序然后取中间值，虽然这不是面试官想要的方法，但还是写一下复习下快排：
+
 ```js
 function partition (arr, left, right) {
   let pivot = arr[left]
@@ -40,6 +41,7 @@ quick_sort(arr, 0, arr.length - 1)
 ```
 
 寻找中位数的思路可以借鉴快排，在每次递归返回“标兵”的时候与中间下标做比较，省去了不必要的排序。递归结束的时候中位数就被放在了中间。
+
 ```js
 const partition = (arr, left, right) => {
   const pivot = arr[left]

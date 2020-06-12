@@ -24,23 +24,30 @@ function reverse (num) {
   reverse_num = Number(str.split('').reverse().join(''))	//字符串转成数组后利用数组的reverse方法，然后数组->字符串->Numer
   return reverse_num > max ? 0 : reverse_num
 }
-``
+```
+
 上面的代码里有一个多余的步骤是：
+
 ```js
 str.replace(/0*$/, '')
 ```
+
 这样写是因为最初尝试使用`Number`转换数字时，发现：
+
 ```js
   Number(12)     //12    10进制12
   Number(012)    //10    8进制12
   Number(0x12)   //18    16进制12
 ```
+
 但是对于字符串：
+
 ```js
   Number("12")   //12
   Number("012")  //12
   Number("0x12") //18
 ```
+
 字符串以0开头的还是当成正常10进制数字处理的。
 
 两种方法难度不大，但是如果能想到数字转字符串的思路，感觉更简单一些。

@@ -3,6 +3,7 @@
 需要匹配全部输入而非部分输入，函数格式如下：
 
 >bool isMatch(const char *s, const char *p)
+
 如：
 
 >isMatch('aa', 'a') // false

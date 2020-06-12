@@ -5,12 +5,19 @@ class BinaryTreeNode {
     this.right = right
   }
 }
-// 排序二叉树
+
+/*
+* 排序二叉树--有顺序，且没有重复元素的二叉树。 对每个节点而言：
+* 1）如果左子树不为空，则左子树上的所有节点都小于该节点；
+* 2）如果右子树不为空，则右子树上的所有节点都大于该节点；
+*/
+
 class BinaryTree {
-  root = null
   constructor (element) {
     if (element) {
       this.root = new BinaryTreeNode(element)
+    } else {
+      this.root = null
     }
   }
   
@@ -24,46 +31,47 @@ class BinaryTree {
     }
   }
 
-  insertNode (parentNode, childNode) {
-    if (parentNode.element > childNode.element) {
-      if (parentNode.left == null) {
-        parentNode.left = childNode
+  insertNode (parent, target) {
+    if (parent.element > target.element) {
+      if (parent.left == null) {
+        // 边界条件
+        parent.left = target
       } else {
-        this.insertNode(parentNode.left, childNode)
+        this.insertNode(parent.left, target)
       }
     } else {
-      if (parentNode.right == null) {
-        parentNode.right = childNode
+      if (parent.right == null) {
+        // 边界条件
+        parent.right = target
       } else {
-        this.insertNode(parentNode.right, childNode)
+        this.insertNode(parent.right, target)
       }
     }
   }
 
   // 中序遍历
   inOrderTraverse (callback) {
-    // callback 是如何输出节点的handle
-    this.inOrderTraverseNode(this.root, callback)
+    this._inOrderTraverse(this.root, callback)
   }
 
-  inOrderTraverseNode (node, callback) {
+  _inOrderTraverse (node, callback) {
     if (node != null) {
-      this.inOrderTraverseNode(node.left, callback)
+      this._inOrderTraverse(node.left, callback)
       callback(node.element)
-      this.inOrderTraverseNode(node.right, callback)
+      this._inOrderTraverse(node.right, callback)
     }
   }
 
   // 前序遍历
   preOrderTraverse (callback) {
-    this.preOrderTraverseNode(this.root, callback)
+    this._preOrderTraverse(this.root, callback)
   }
 
-  preOrderTraverseNode (node, callback) {
+  _preOrderTraverse (node, callback) {
     if (node != null) {
       callback(node.element)
-      this.preOrderTraverseNode(node.left, callback)
-      this.preOrderTraverseNode(node.right, callback)
+      this._preOrderTraverse(node.left, callback)
+      this._preOrderTraverse(node.right, callback)
     }
   }
 
@@ -72,10 +80,10 @@ class BinaryTree {
     this.postOrderTraverseNode(this.root, callback)
   }
 
-  postOrderTraverseNode (node, callback) {
+  _postOrderTraverse (node, callback) {
     if (node != null) {
-      this.postOrderTraverseNode(node.left)
-      this.postOrderTraverseNode(node.right)
+      this._postOrderTraverse(node.left)
+      this._postOrderTraverse(node.right)
       callback(node.element)
     }
   }
@@ -97,6 +105,7 @@ class BinaryTree {
     }
     return cur
   }
+
   // 查找指定节点
   find (element) {
     let cur = this.root
@@ -112,7 +121,7 @@ class BinaryTree {
     return false
   }
 
-  // 深度优先遍历
+  // 深度优先遍历 后序遍历
   DFSTraverse (callback) {
     this.DFSTraverseNode(this.root, callback)
   }
@@ -124,4 +133,7 @@ class BinaryTree {
   }
 
   // 广度优先遍历
+  BFSTraverse () {}
+
+  BFSTraverseNode () {}
 }

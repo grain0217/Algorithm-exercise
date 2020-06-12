@@ -4,6 +4,7 @@
 不能倾斜容器，n >= 2。
 
 暴力求解：
+
 ```js
 function container_index (arr) {
   const len = arr.length

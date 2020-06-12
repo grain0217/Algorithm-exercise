@@ -3,7 +3,7 @@
 背包问题是算法研究中的一个经典问题。试想你是一个保险箱大盗，打开了一个装满奇珍异宝的保险箱，但是你必须将这些宝贝放入你的一个小背包中。保险箱中的物品规格和价值不同。你希望自己的背包装进的宝贝总价值最大。
 
 #### 递归的解法
-```
+```js
 function knapsack (capacity, objectArr, order) {
   if (capacity <= 0 || order <= 0) {
     return 0
@@ -17,7 +17,7 @@ function knapsack (capacity, objectArr, order) {
 ```
 
 #### 动态规划的解法
-```
+```js
 function knapsack (capacity, objectArr) {
   const len = objectArr.length
   let f = []
@@ -38,7 +38,8 @@ function knapsack (capacity, objectArr) {
 ```
 
 贪心算法不能解决0-1背包问题，如果放入背包的物品从本质上说是连续的，则问题变为了特殊的背包问题，可以使用贪心算法解决：
-```
+
+```js
 function knapsack (capacity, objectArr) {
   // 首先按性价比排序, 高 -> 低
   objectArr.sort(function (a, b) {

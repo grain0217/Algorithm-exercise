@@ -30,4 +30,8 @@ class Tree {
   }
 
   BFSTraverse (node, callback) {}
+
+  DFS () {}
+
+  DFSTraverse () {}
 }
