@@ -19,3 +19,40 @@ E   D   H   N
 - 设`numRows`行字符串分别为`s1`, `s2`, ..., `sn`，则容易发现：按顺序遍历字符串`s`时，每个字符`c`在`Z`字形中对应的行索引先从`s1`增大至`sn` ，再从`sn`减小至 `s1`…… 如此反复。
 - 因此，解决方案为：模拟这个行索引的变化，在遍历`s`中把每个字符填到正确的行`res[i]`。
 
+```js
+function convert (s, numRows) {
+  const len = s.length
+  const ret = new Array(numRows)
+  // 边界条件
+  if (numRows === 1) return s
+  for (let i = 0; i < numRows; i++) {
+    ret[i] = ''
+  }
+  let downFlag = true
+  let index = 0 // s0、s1、s2...sn-1 的下标
+  for (let j = 0; j < len; j++) {
+    if (downFlag) {
+      // 向下 index 递增
+      ret[index] += s.charAt(j)
+      index++
+    } else {
+      // 向上 index 递减
+      ret[index] += s.charAt(j)
+      index--
+    }
+    
+    if (index === 0) {
+      // 递减为0 开始递增
+      downFlag = true
+    } else if (index === numRows - 1) {
+      // 递增为 numRows - 1 开始递减
+      downFlag = false
+    }
+  }
+
+  return ret.join('')
+};
+```
+
+时间复杂度`O(n)`。
+
