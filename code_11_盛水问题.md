@@ -1,0 +1,47 @@
+给你`n`个非负整数a1，a2，...，an，每个数代表坐标中的一个点`(i, ai)`。在坐标内画`n`条垂直线，垂直线`i`的两个端点分别为`(i, ai)`和`(i, 0)`。找出其中的两条线，使得它们与`x`轴共同构成的容器可以容纳最多的水。
+
+说明：你不能倾斜容器，且`n`的值至少为2。
+
+![盛水问题](https://aliyun-lc-upload.oss-cn-hangzhou.aliyuncs.com/aliyun-lc-upload/uploads/2018/07/25/question_11.jpg)
+
+示例：
+```
+输入：[1,8,6,2,5,4,8,3,7]
+输出：49
+```
+
+#### 穷举
+```js
+function maxArea (height) {
+  const len = height.length
+  let max = 0
+  for(let i = 0; i < len - 1; i++){
+    for (let j = i + 1; j < len; j++) {
+      const area = Math.min(height[i], height[j]) * (j - i)
+      if(area > max) max = area
+    }
+  }
+  return max
+}
+```
+
+时间复杂度`O(n^2)`，空间复杂度`O(1)`。
+
+#### 双指针
+```js
+function maxArea (height) {
+  const len = height.length
+  let max = 0
+  let i = 0, j = len - 1
+  while (i < j) {
+    const area = (j - i) * (height[j] < height[i] ? height[j] : height[i])
+    if (area > max) max = area
+    if (height[i] < height[j]) {
+      i++
+    } else {
+      j--
+    }
+  }
+  return max
+}
+```
