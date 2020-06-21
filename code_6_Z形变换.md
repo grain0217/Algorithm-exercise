@@ -12,9 +12,25 @@ E   D   H   N
 
 请你实现这个将字符串进行指定行数变换的函数。
 
-![Z字形变换](https://pic.downk.cc/item/5eec1ac214195aa5948b9722.jpg)
+**示例 1:**
+```
+输入: s = "LEETCODEISHIRING", numRows = 3
+输出: "LCIRETOESIIGEDHN"
+```
 
-分析：
+**示例 2:**
+```
+输入: s = "LEETCODEISHIRING", numRows = 4
+输出: "LDREOEIIECIHNTSG"
+解释:
+
+L     D     R
+E   O E   I I
+E C   I H   N
+T     S     G
+```
+
+#### 分析：
 - 字符串`s`是以`Z`字形为顺序存储的字符串，目标是按行打印。
 - 设`numRows`行字符串分别为`s1`, `s2`, ..., `sn`，则容易发现：按顺序遍历字符串`s`时，每个字符`c`在`Z`字形中对应的行索引先从`s1`增大至`sn` ，再从`sn`减小至 `s1`…… 如此反复。
 - 因此，解决方案为：模拟这个行索引的变化，在遍历`s`中把每个字符填到正确的行`res[i]`。
