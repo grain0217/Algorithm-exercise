@@ -8,11 +8,6 @@
 
 **进阶:**
 你可以迭代或递归地反转链表。你能否用两种方法解决这道题？
- <!-- * Definition for singly-linked list.
- * function ListNode(val) {
- *     this.val = val;
- *     this.next = null;
- * } -->
 
 #### 迭代
 ```js
@@ -23,25 +18,33 @@ function reverseList (head) {
   if (!head) return head
 
   while (head) {
-    cur = new ListNode(head.val)
+    cur = head
+
+    head = head.next
+    
     cur.next = pre
 
     // prev 记录上一个节点
     pre = cur
-    head = head.next
   }
   return cur
 }
 ```
 
-时间复杂度`O(n)`，空间复杂度`O(n)`。
+时间复杂度`O(n)`，空间复杂度`O(1)`。
 
 #### 递归
 ```js
 function reverseList (head) {
-  // if (!head) return head
-  // reverseList(head.next)
+  if (!head || !head.next) return head
+  const p = reverseList(head.next)
+  head.next.next = head
+  // 容易忽略
+  head.next = null
+  return p
 }
 ```
+
+时间复杂度`O(n)`，空间复杂度`O(n)`。
 
 思路与`code_21_合并两个有序链表`一致。
