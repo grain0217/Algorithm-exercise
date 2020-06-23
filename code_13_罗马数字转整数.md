@@ -52,9 +52,29 @@ M             1000
 解释: M = 1000, CM = 900, XC = 90, IV = 4.
 ```
 
+遍历将字符串，当一个小值在大值的左边，就做减法，否则做加法。
 
 ```js
 function romanToInt (s) {
-  const
+  const map = {
+    I: 1,
+    V: 5,
+    X: 10,
+    L: 50,
+    C: 100,
+    D: 500,
+    M: 1000
+  }
+  let i = 0
+  let ret = 0
+  while (s.charAt(i)) {
+    if (map[s.charAt(i)] < map[s.charAt(i + 1)]) {
+      ret = ret - map[s.charAt(i)]
+    } else {
+      ret = ret + map[s.charAt(i)]
+    }
+    i++
+  }
+  return ret
 }
 ```
