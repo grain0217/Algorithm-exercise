@@ -20,42 +20,27 @@
 所有输入只包含小写字母 a-z 。
 ```
 
-先找到数组中长度最短的字符串`s`，遍历数组中的字符串与`s`比较。
+先以第一个字符串`s`作为最大公共前缀，遍历数组中的字符串与`s`比较。
 
 ```js
 function longestCommonPrefix (strs) {
-  const shortestStr = shortest_str(strs)
-  let max = shortestStr.length
   const len = strs.length
-  let temp = max
-  for (let i = 0; i < len; i++) {
+  // 边界条件
+  if (len === 0) return '' 
+  let max = strs[0].length
+  let maxPre = strs[0]
+  for (let i = 1; i < len; i++) {
     const str = strs[i]
-    for (let j = 0; j < max; j++) {
-      if (shortestStr.charAt(j) != str.charAt(j)) {
-        temp = j
-        break
-      }
+    const length = Math.min(max, str.length)
+    let j = 0
+    for (; j < length; j++) {
+      if (maxPre.charAt(j) != str.charAt(j)) break
     }
-    if (temp < max) {
-      max = temp
-    }
-  }
-  return shortestStr.substr(0, max)
-}
-
-function shortest_str (strs) {
-  const len = strs.length
-  if (!len) return ''
-  let min = strs[0].length
-  let shortestStr = strs[0]
-  for (let i = 0; i < len; i++) {
-    const temp = strs[i].length
-    if (temp < min) {
-      min = temp
-      shortestStr = strs[i]
+    if (j < max) {
+      max = j
     }
   }
-  return shortestStr
+  return maxPre.substr(0, max)
 }
 ```
 
