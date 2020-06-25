@@ -1,34 +1,37 @@
->写一个函数，找出一个字符串数组的最长共同前缀
+编写一个函数来查找字符串数组中的最长公共前缀。
 
-比如：
->给定 ['hi, barret', 'hi, skylar', 'hi, john']，输出 ‘hi,’
+如果不存在公共前缀，返回空字符串 ""。
 
-最开始理解错题，当成任意两个字符串的最长公共前缀。。嗯，是所有字符串的公共前缀。
+**示例 1:**
+```
+输入: ["flower","flow","flight"]
+输出: "fl"
+```
 
-思路：首先，找到最短的字符串作为比较的标准。然后遍历比较。
+**示例 2:**
+```
+输入: ["dog","racecar","car"]
+输出: ""
+解释: 输入不存在公共前缀。
+```
+
+**说明:**
+```
+所有输入只包含小写字母 a-z 。
+```
+
+先找到数组中长度最短的字符串`s`，遍历数组中的字符串与`s`比较。
+
 ```js
-function shortest_str (arr) {
-  const len = arr.length
-  let min = arr[0].length
-  let index = 0
-  for (let i = 0; i < len; i++) {
-    let temp = arr[i].length
-    if (temp < min) {
-      min = temp
-      index = i
-    }
-  }
-  return index
-}
-
-function longest_common_prefix (arr) {
-  let short_str = arr[shortest_str(arr)]
-  let max = short_str.length
-  const leng = arr.length
+function longestCommonPrefix (strs) {
+  const shortestStr = shortest_str(strs)
+  let max = shortestStr.length
+  const len = strs.length
   let temp = max
-  for (let i = 0; i < leng; i++) {
+  for (let i = 0; i < len; i++) {
+    const str = strs[i]
     for (let j = 0; j < max; j++) {
-      if (short_str[j] != arr[i][j]) {
+      if (shortestStr.charAt(j) != str.charAt(j)) {
         temp = j
         break
       }
@@ -37,6 +40,23 @@ function longest_common_prefix (arr) {
       max = temp
     }
   }
-  return short_str.substr(0, max)
+  return shortestStr.substr(0, max)
+}
+
+function shortest_str (strs) {
+  const len = strs.length
+  if (!len) return ''
+  let min = strs[0].length
+  let shortestStr = strs[0]
+  for (let i = 0; i < len; i++) {
+    const temp = strs[i].length
+    if (temp < min) {
+      min = temp
+      shortestStr = strs[i]
+    }
+  }
+  return shortestStr
 }
 ```
+
+时间复杂度`O(n^2)`。
