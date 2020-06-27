@@ -41,4 +41,4 @@ function find_index_new (nums, target) {
 }
 ```
 
-时间复杂度O(n^2) ---> O(n)
+时间复杂度`O(n^2)` ---> `O(n)`
