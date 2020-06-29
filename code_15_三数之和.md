@@ -57,3 +57,5 @@ function threeSum (nums) {
   return ret
 }
 ```
+
+在想到排序和双指针之后，去重重复解是一个难点。
