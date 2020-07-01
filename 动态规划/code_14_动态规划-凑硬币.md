@@ -8,7 +8,7 @@
 
 >有面值为1元、3元和5元的硬币若干枚，如何用最少的硬币凑够n元？
 
-```
+```js
 function dp_least (coins, target) {
   let min = 0
   const arr = []	//用来记录凑齐i元所需硬币数：arr[i]
@@ -35,7 +35,7 @@ dp_least(coins, 11)
  
  事实上，在第一种情境下，任何target的总额总是能凑到的，因为有面额为1元的硬币；当给出的硬币中不再含1元，即给出的目标target不是总能够凑到的，这是需要考虑的：
  
- ```
+```js
 fucntion dp_least (coins, target) {
   let min
   let unreachable = "不可到达"
@@ -64,12 +64,12 @@ fucntion dp_least (coins, target) {
 
 let coins = [2,3,5]
 dp_least(coins, 11)
-
 ```
+
 现在再将情况考虑到更一般一些，硬币面额随机，且不只三种，即开头的这道题，我们可以假定arr这个数组代表的硬币面额已经是由小到大排列了：
 
-```
-const dp_least = (coins, target) => {
+```js
+function dp_least (coins, target) => {
   let min
   let unreachable = "不可到达"
   const len = coins.length
