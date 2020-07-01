@@ -13,69 +13,67 @@ B: [3,2,1,4,7]
 - 1 <= len(A), len(B) <= 1000
 - 0 <= A[i], B[i] < 100
 
-暴力求解：
+#### 暴力求解：
 ```js
-function longest_substring (str1, str2) {
-  const len1 = str1.length
-  const len2 = str2.length
-  let len_substr = 0
-  let pos = 0
+function findLength (A, B) {
+  const len1 = A.length
+  const len2 = B.length
+  let max = 0
   for (let i = 0; i < len1; i++) {
     for (let j = 0; j < len2; j++) {
-      let x = i
-      let y = j
-      while (str1[x] == str2[y] && x < len1 && y < len2) {
-        x++
-        y++
-      }
-      if (x - i > len_substr) {
-        len_substr = x - i
-        pos = i
+      let k = 0
+      if (A[i] === B[j]) {
+        while (A[i + k] === B[j + k] && (i + k < len1) && (j + k < len2)) {
+          k++
+        }
+        if (k > max) {
+          max = k
+        }
+      } else {
+        continue
       }
     }
   }
-  return str1.substr(pos, len_substr);
+  return max
 }
 ```
-s
-时间复杂度：$O(n^3)$，空间复杂度是$O(1)$。
 
----
+时间复杂度：$O(n^3)$，空间复杂度是$O(n^2)$。
 
-动态规划求解，找到状态转移方程：
+#### 动态规划
+首先，找到状态转移方程：
 ```js
-d[i, j] = str[i] == str[j] ? d[i - 1, j - 1] + 1 : 0
+d[i, j] = A[i] == B[j] ? d[i - 1, j - 1] + 1 : 0
 ```
 
-其中`d[i, j]`表示以`str1[i]`、`str2[j]`结尾的字符串的最长公共子字符串的长度。
+其中`d[i, j]`表示以`A`、`B`中分别以`A[i]`、`B[j]`为尾元素的众多子数组的最长公共长度。
 
 ```js
-const dp_longest_substring = (str1, str2) => {
-  const len1 = str1.length
-  const len2 = str2.length
-  let arr = new Array(len1)
-  let len_substr = 0
-  let pos = 0
+function findLength (A, B) => {
+  const len1 = A.length
+  const len2 = B.length
+  let max = 0
+  const arr = new Array()
   for (let i = 0; i < len1; i++) {
-    arr[i] = new Array(len2)
+    arr[i] = new Array()
     for (let j = 0; j < len2; j++) {
-      if (str1[i] == str2[j]) {
-        if (i == 0 || j == 0) {
+      if (A[i] === B[j]) {
+        // A[i] === B[j] + i === 0 || j === 0  -> arr[i][j] = 1
+        if (i * j === 0) {
           arr[i][j] = 1
         } else {
-          arr[i][j] = arr[i-1][j-1] + 1
+          arr[i][j] = arr[i - 1][j - 1] + 1
         }
-        if (arr[i][j] > len_substr) {
-          len_substr = arr[i][j]
-          pos = i - len_substr + 1
+        if (arr[i][j] > max) {
+          max = arr[i][j]
         }
       } else {
         arr[i][j] = 0
       }
     }
   }
-  return str1.substr(pos, len_substr)
+  return max
 }
 ```
 
-时间复杂度$O(n^2)$，空间复杂度$O(n^2)$。注意到每次比较只用到相邻两行，可以将空间复杂度优化到$O(n)$。
+时间复杂度$O(mn)$，空间复杂度$O(mn)$，`m`，`n`为亮哥数组的长度。注意到每次比较只用到相邻两行，可以将空间复杂度优化到$O(Math.max(m, n))$。
