@@ -12,6 +12,39 @@
 输出: 4
 ```
 
+**说明:**
+你可以假设`k`总是有效的，且1 ≤ k ≤数组的长度。
+
+对快排的思路进行调整以适用寻找第k大元素：
+
 ```js
-function findKthLargest (nums, k) {}
+function findKthLargest (nums, k) {
+  const len = nums.length
+  const targetIndex = nums.length - k
+  let low = 0, high = len - 1
+  while(true) {
+    const piviotIndex = partition(nums, low, high)
+    if (piviotIndex === targetIndex) {
+      return nums[targetIndex]
+    } else if (piviotIndex > targetIndex) {
+      high = piviotIndex - 1
+    } else {
+      low = piviotIndex + 1
+    }
+  }
+}
+
+function partition (nums, low, high) {
+  const piviot = nums[low]
+  while (low < high) {
+    while (nums[high] > piviot && high > low) high--
+    nums[low] = nums[high]
+    while (nums[low] <= piviot && high > low) low++
+    nums[high] = nums[low]
+  }
+  nums[low] = piviot
+  return low
+}
 ```
+
+时间复杂度 $O(n)$。
