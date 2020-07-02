@@ -12,3 +12,20 @@
 - 你算法的时间复杂度应该为 `O(n^2)`。
 
 进阶: 你能将算法的时间复杂度降低到 `O(nlogn)` 吗?
+
+```js
+function lengthOfLIS (nums) {
+  if (!nums || !nums.length) return 0
+  const len = nums.length
+  const dp = new Array()
+  for (let i = 0; i < len; i++) {
+    if (i === 0) {
+      dp[i] = 1
+      continue
+    } else {
+      dp[i] = nums[i] > nums[i - 1] ? dp[i - 1] + 1 : dp[i - 1]
+    }
+  }
+  return dp[len - 1]
+}
+```
