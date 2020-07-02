@@ -16,7 +16,6 @@ function reverse (num) {
   let reverse_num
   const max = Math.pow(2,32) - 1
   if (num > max || num <0 ) {
-    console.log('非法的32位整数！')
     return
   }
   let str = Number(num).toString()
