@@ -24,28 +24,27 @@
 
 ```js
 function addBinary (a, b) {
+  let i = 1
+  let overflow = 0
+  const sum = []
   const len1 = a.length
   const len2 = b.length
-  let i = len1 - 1, j = len2 - 1
-  let flag = 0
-  const ret = []
-  while (i >= 0 || j >= 0) {
-    const num1 = i >= 0 ? +a.charAt(i--) : 0
-    const num2 = j >= 0 ? +b.charAt(j--) : 0
-    const sum = num1 + num2 + flag
-    if (sum === 3) {
-      ret.unshift(1)
-    } else if (sum === 2) {
-      ret.unshift(0)
-      flag = 1
-    } else if (sum === 1) {
-      ret.unshift(1)
-      flag = 0
+  while (i < len1 + 1 || i < len2 + 1) {
+    const _sum = +(a.charAt(len1 - i) || 0) + (+(b.charAt(len2 - i) || 0)) + overflow
+    if (_sum === 3) {
+      sum.unshift(1)
+    } else if (_sum === 2) {
+      sum.unshift(0)
+      overflow = 1
+    } else if (_sum === 1) {
+      sum.unshift(1)
+      overflow = 0
     } else {
-      ret.unshift(0)
+      sum.unshift(0)
     }
+    i++
   }
-  if (flag) ret.unshift(1)
-  return ret.join('')
+  if (overflow) sum.unshift(1)
+  return sum.join('')
 }
 ```
