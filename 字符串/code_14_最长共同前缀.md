@@ -21,7 +21,6 @@
 ```
 
 先以第一个字符串`s`作为最大公共前缀，遍历数组中的字符串与`s`比较。
-
 ```js
 function longestCommonPrefix (strs) {
   const len = strs.length

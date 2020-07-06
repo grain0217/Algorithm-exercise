@@ -37,7 +37,6 @@
 ```
 
 利用栈，遍历字符串，左括号入栈，右括号出栈，结束时栈为空则有效：
-
 ```js
 function isValid (s) {
   const leftMap = {

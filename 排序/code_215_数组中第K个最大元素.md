@@ -16,7 +16,6 @@
 你可以假设`k`总是有效的，且`1 ≤ k ≤`数组的长度。
 
 对快排的思路进行调整以适用寻找第k大元素：
-
 ```js
 function findKthLargest (nums, k) {
   const len = nums.length

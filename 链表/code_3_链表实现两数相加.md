@@ -10,7 +10,6 @@
 这道题需要考虑溢出问题。最简单的思路是倒序相加，如果满十下一次相加需要进位。
 
 如果这两个数的存储是用list来实现的话：
-
 ```js
 function addTwoNumbers (l1, l2) {
   let length1 = l1.length

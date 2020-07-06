@@ -13,7 +13,6 @@
 - -10^4 <= target <= 10^4
 
 在理解了`code_15_三数之和`的解题后，这题就比较简单：
-
 ```js
 function threeSumClosest (nums, target) {
   const len = nums.length

@@ -15,7 +15,6 @@
 
 #### 中心扩散
 思路：遍历字符串，在每次遍历中由i开始往两侧比较寻找回文串：
-
 ```js
 function find_longest_palindrome (s) {
   let max = 1
@@ -70,7 +69,6 @@ dp[i][j] = dp[i+1][j-1] && s[i] === s[j]
 ```
 
 代码：
-
 ```js
 function find_longest_palindrome (s) {
   const len = s.length

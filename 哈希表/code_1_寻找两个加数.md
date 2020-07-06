@@ -11,7 +11,6 @@
 ```
 
 直观可以想到的暴力方法：
-
 ```js
 function find_index (nums, target) {
   for(let i = 0, len = nums.length; i < len; i++) {
@@ -26,7 +25,6 @@ function find_index (nums, target) {
 ```
 
 利用哈希表，节省一层遍历：
-
 ```js
 function find_index_new (nums, target) {
   const result = []
