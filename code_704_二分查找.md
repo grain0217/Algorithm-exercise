@@ -22,7 +22,8 @@
 #### 递归二分查找
 ```js
 function binary_search (arr, left, right, target) {
-  const mid = ~~((left + right) / 2)
+  // const mid = ~~((left + right) / 2)
+  const mind = (left + right) >> 1
   if (left === right && arr[mid] !== target) {
     return -1
   }
@@ -45,7 +46,8 @@ function binary_search (arr, target) {
   let left = 0
   let right = arr.length - 1
   while (left < right) {
-    const mid = ~~((left + right) / 2)
+    // const mid = ~~((left + right) / 2)
+    const mid = (left + right) >> 1
     if (arr[mid] === target) {
       return mid
     } else if (arr[mid] < target) {
