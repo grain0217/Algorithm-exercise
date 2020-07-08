@@ -33,7 +33,7 @@ function binary_search (arr, left, right, target) {
     if (arr[mid] < target) {
       left = mid + 1
     } else {
-      right = mid - 1
+      right = mid
     }
     return binary_search(arr, left, right, target)
   }
@@ -54,7 +54,7 @@ function binary_search (arr, target) {
       // mid + 1, 否则边界条件: 查找不到时 陷入死循环
       left = mid + 1
     } else {
-      right = mid - 1
+      right = mid
     }
   }
   //最终在left == right循环中止
