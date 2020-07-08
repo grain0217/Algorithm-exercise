@@ -4,11 +4,13 @@
 
 你可以假设`nums1`和`nums2`不会同时为空。
 
+时间复杂度要求为`O(log(m+n))`，想到二分法：
 ```js
 function findMedianSortedArrays (nums1, nums2) {
   let k1 = 1, k2 = 1
   // 中位数索引
-  const length = nums1.length + nums2.length
+  const len1 = nums1.length
+  const len2 = nums2.length
   while (2 * (k1 + k2) < length) {
     if (nums1[k1 - 1] < nums2[k2 - 1]) {
       k1++
@@ -23,3 +25,6 @@ function findMedianSortedArrays (nums1, nums2) {
   }
 }
 ```
+
+时间复杂度`O(log(min(m, n)))`，空间复杂度`O(1)`。
+
