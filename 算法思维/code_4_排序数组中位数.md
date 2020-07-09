@@ -50,35 +50,42 @@ median = max(left_part)
   - 如果`A`的长度较大，只需要交换`A`和`B`即可。
 - `B[j - 1] <= A[i]`且`A[i - 1] <= B[j]`
 
-这样这道题就可以变为在`[0, m]`中寻找这样的`i`，我们在`[0, m]`上对`i`进行二分查找，找到最大的满足`A[i - 1] <= B[j]`的`i`值。
+这样这道题就可以变为在`[0, m]`上对`i`进行二分查找，找到**最大**的满足`A[i - 1] <= B[j]`的`i`值。
 ```js
 function findMedianSortedArrays (nums1, nums2) {
   if (nums1.length > nums2.length) return findMedianSortedArrays(nums2, nums1)
   const m = nums1.length
   const n = nums2.length
   let left = 0, right = m
+  // 左半部分需要的元素的总个数
+  const totalLeft = (m + n + 1) >> 1
   while (left < right) {
     const i = (left + right) >> 1
-    const j = ((m + n + 1) >> 1) - i
+    const j = totalLeft - i
 
-    const nums1LeftMax = i === 0 ? Number.MIN_VALUE : nums1[i - 1]
-    const nums2LeftMax = j === 0 ? Number.MIN_VALUE : nums2[j - 1]
-    const nums1RightMIN = i === m ? Number.MAX_VALUE : nums1[i]
-    const nums2RightMIN = j === n ? Number.MAX_VALUE : nums2[j]
-
-    if (Math.max(nums1LeftMax, nums2LeftMax) > Math.min(nums1RightMIN, nums2RightMIN)) {
-      right = i
+    // left、right的调整很容易出错
+    if (i === 0) {
+      // 左半部分最大值 > 右半部分最小值
+      if (nums2[j - 1] > nums1[i]) {
+        left = i + 1
+      } else {
+        right = i
+      }
     } else {
-      left = i + 1
+      if (nums1[i - 1] > nums2[j]) {
+        right = i
+      } else {
+        left = i + 1
+      }
     }
   }
 
-  const i = right
-  const j = ((m + n + 1) >> 1) - i
-  const nums1LeftMax = i === 0 ? Number.MIN_VALUE : nums1[i - 1]
-  const nums2LeftMax = j === 0 ? Number.MIN_VALUE : nums2[j - 1]
-  const nums1RightMIN = i === m ? Number.MAX_VALUE : nums1[i]
-  const nums2RightMIN = j === n ? Number.MAX_VALUE : nums2[j]
+  const i = nums1[left - 1] > nums2[totalLeft - left] ? left - 1 : left
+  const j = totalLeft - i
+  const nums1LeftMax = i === 0 ? Number.MIN_SAFE_INTEGER : nums1[i - 1]
+  const nums2LeftMax = j === 0 ? Number.MIN_SAFE_INTEGER : nums2[j - 1]
+  const nums1RightMIN = i === m ? Number.MAX_SAFE_INTEGER : nums1[i]
+  const nums2RightMIN = j === n ? Number.MAX_SAFE_INTEGER : nums2[j]
 
   return (m + n) % 2 === 0
     ? (Math.max(nums1LeftMax, nums2LeftMax) + Math.min(nums1RightMIN, nums2RightMIN)) / 2
@@ -88,8 +95,3 @@ function findMedianSortedArrays (nums1, nums2) {
 
 时间复杂度`O(log(min(m, n)))`，空间复杂度`O(1)`。
 
-```
-// 边界条件不对，未ac
-// [3] [-2,-1]
-// [1,2] [3,4]
-```
