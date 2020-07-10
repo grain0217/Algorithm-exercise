@@ -20,27 +20,20 @@
 所有输入只包含小写字母 a-z 。
 ```
 
-先以第一个字符串`s`作为最大公共前缀，遍历数组中的字符串与`s`比较。
+先以第一个字符串`s`作为最大公共前缀，遍历`s`，比较数组中的每一位是否与`s`的当前位相同，不同则返回：
 ```js
 function longestCommonPrefix (strs) {
+  if (!strs || !strs.length) return ''
   const len = strs.length
-  // 边界条件
-  if (len === 0) return '' 
-  let max = strs[0].length
-  let maxPre = strs[0]
-  for (let i = 1; i < len; i++) {
-    const str = strs[i]
-    const length = Math.min(max, str.length)
-    let j = 0
-    for (; j < length; j++) {
-      if (maxPre.charAt(j) != str.charAt(j)) break
-    }
-    if (j < max) {
-      max = j
+  for (let i = 0; i <  strs[0].length; i++) {
+    for (let j = 1; j < len; j++) {
+      if (strs[j].charAt(i) === strs[0].charAt(i)) {
+        continue
+      } else {
+        return strs[0].substring(0, i)
+      }
     }
   }
-  return maxPre.substr(0, max)
+  return strs[0]
 }
 ```
-
-时间复杂度`O(n^2)`。

@@ -27,5 +27,7 @@
 ```
 
 ```js
-function maxPathSum = function(root) {}
+function maxPathSum = function(root) {
+	
+}
 ```
