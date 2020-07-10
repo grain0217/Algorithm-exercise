@@ -15,6 +15,24 @@
  -10  5
 ```
 
+中序遍历，总是选择中间位置数字作为根节点：
 ```js
-function sortedArrayToBST (nums) {}
+function TreeNode(val) {
+  this.val = val;
+  this.left = this.right = null;
+}
+
+function sortedArrayToBST (nums) {
+  return helper(nums, 0, nums.length - 1)
+}
+
+function helper (nums, left, right) {
+  if (left > right) return null
+  const mid = left + right >> 1
+
+  const node = new TreeNode(nums[mid])
+  node.left = helper(nums, left, mid - 1)
+  node.right = helper(nums, mid + 1, right)
+  return node
+}
 ```
