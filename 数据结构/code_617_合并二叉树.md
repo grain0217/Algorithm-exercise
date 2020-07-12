@@ -22,30 +22,26 @@
 
 注意: 合并必须从两个树的根节点开始。
 
-#### 递归
+树结构：
 ```js
 function TreeNode(val) {
   this.val = val;
   this.left = this.right = null;
 }
+```
 
+#### 递归
+```js
 function mergeTrees (t1, t2) {
-  if (!t1 && !t2) return null
-
-  const node = new TreeNode()
   if (!t1) {
-    node.val = t2.val
-    node.left = mergeTrees(t2.left, null)
-    node.right = mergeTrees(t2.right, null)
+    return t2
   } else if (!t2) {
-    node.val = t1.val
-    node.left = mergeTrees(t1.left, null)
-    node.right = mergeTrees(t1.right, null)
-  } else {
-    node.val = t1.val + t2.val
-    node.left = mergeTrees(t1.left, t2.left)
-    node.right = mergeTrees(t1.right, t2.right)
+    return t1
   }
+  const node = new TreeNode(t1.val + t2.val)
+
+  node.left = mergeTrees(t1.left, t2.left)
+  node.right = mergeTrees(t1.right, t2.right)
   return node
 }
 ```
