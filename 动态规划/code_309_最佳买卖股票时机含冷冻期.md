@@ -11,6 +11,34 @@
 解释: 对应的交易状态为: [买入, 卖出, 冷冻期, 买入, 卖出]
 ```
 
+寻找状态：我们用`dp[i]`表示第`i`天结束之后的「累计最大收益」。根据题目描述，由于我们最多只能同时买入（持有）一支股票，并且卖出股票后有冷冻期的限制，因此我们会有三种不同的状态：
+- 我们目前持有一支股票，对应的「累计最大收益」记为`dp[i][0]`；
+- 我们目前不持有任何股票，并且处于冷冻期中，对应的「累计最大收益」记为`dp[i][1]`；
+- 我们目前不持有任何股票，并且不处于冷冻期中，对应的「累计最大收益」记为`dp[i][2]`。
+
+状态转移方程：
 ```js
-function maxProfit (prices) {}
+dp[i][0] = Math.max(dp[i - 1][0], dp[i - 1][2] - prices[i])
+dp[i][1] = dp[i - 1][0] + prices[i]
+dp[i][2] = Math.max(dp[i - 1][1], dp[i - 1][2])
 ```
+
+代码：
+```js
+function maxProfit (prices) {
+  if (!prices || prices.length < 2) return 0
+  const len = prices.length
+  const dp = [
+    [-prices[0], 0, 0],
+  ]
+  for (let i = 1; i < len; i++) {
+    dp[i] = []
+    dp[i][0] = Math.max(dp[i - 1][0], dp[i - 1][2] - prices[i])
+    dp[i][1] = prices[i] + dp[i - 1][0]
+    dp[i][2] = Math.max(dp[i - 1][1], dp[i - 1][2])
+  }
+  return Math.max(dp[len - 1][1], dp[len - 1][2])
+}
+```
+
+难点在状态的定义。
