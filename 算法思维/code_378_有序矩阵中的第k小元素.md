@@ -13,12 +13,12 @@ k = 8,
 返回 13。
 ```
 
-#### 归并排序
+### 归并排序
 ```js
 // todo
 ```
 
-#### 二分查找
+### 二分查找
 ```js
 function kthSmallest (matrix, k) {
   const n = matrix.length

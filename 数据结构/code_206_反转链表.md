@@ -9,7 +9,7 @@
 **进阶:**
 你可以迭代或递归地反转链表。你能否用两种方法解决这道题？
 
-#### 迭代
+### 迭代
 ```js
 function reverseList (head) {
   let pre, cur
@@ -33,7 +33,7 @@ function reverseList (head) {
 
 时间复杂度`O(n)`，空间复杂度`O(1)`。
 
-#### 递归
+### 递归
 ```js
 function reverseList (head) {
   if (!head || !head.next) return head

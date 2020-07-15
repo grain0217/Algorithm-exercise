@@ -20,7 +20,7 @@
 解释: 从右向左读, 为 01 。因此它不是一个回文数。
 ```
 
-#### 字符串双端比较
+### 字符串双端比较
 ```js
 function isPalindrome (x) {
 	const str = x.toString()
@@ -33,7 +33,7 @@ function isPalindrome (x) {
 }
 ```
 
-#### 不使用字符串，反转一半数字
+### 不使用字符串，反转一半数字
 
 ![反转](https://assets.leetcode-cn.com/solution-static/9/9_fig1.png)
 

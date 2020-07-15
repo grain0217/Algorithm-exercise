@@ -16,8 +16,8 @@
 输出: [-1,-1]
 ```
 
+### 二分法
 要求时间复杂度在`O(log n)`，首先想到二分查找，问题在于如何确保第一个和最后一个。
-
 ```js
 function searchRange (nums, target) {
   if (!nums || !nums.length) return [-1, -1]

@@ -18,7 +18,7 @@
 函数应该返回新的长度 5, 并且原数组 nums 的前五个元素被修改为 0, 1, 2, 3, 4。
 ```
 
-覆盖拷贝：
+### 覆盖拷贝：
 ```js
 function removeDuplicates (nums) {
   const len = nums.length

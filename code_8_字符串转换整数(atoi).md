@@ -51,7 +51,7 @@
      因此返回 INT_MIN (−231) 。
 ```
 
-#### 暴力求解
+### 暴力求解
 ```js
 function myAtoi (str) {
   let start = 0, end = 0
@@ -82,4 +82,4 @@ function myAtoi (str) {
 }
 ```
 
-#### 状态机
+### 状态机

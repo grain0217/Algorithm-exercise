@@ -12,6 +12,7 @@
 - -10^3 <= nums[i] <= 10^3
 - -10^4 <= target <= 10^4
 
+### 排序+双指针
 在理解了`code_15_三数之和`的解题后，这题就比较简单：
 ```js
 function threeSumClosest (nums, target) {

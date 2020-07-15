@@ -30,6 +30,7 @@
 返回 false 。
 ```
 
+### 递归
 ```js
 function isBalanced (root) {
   if (!root) return true

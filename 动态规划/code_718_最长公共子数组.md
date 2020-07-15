@@ -13,7 +13,7 @@ B: [3,2,1,4,7]
 - `1 <= len(A), len(B) <= 1000`
 - `0 <= A[i], B[i] < 100`
 
-#### 暴力求解：
+### 暴力求解：
 ```js
 function findLength (A, B) {
   const len1 = A.length
@@ -40,7 +40,7 @@ function findLength (A, B) {
 
 时间复杂度：`O(n^3)`，空间复杂度是`O(n^2)`。
 
-#### 动态规划
+### 动态规划
 首先，找到状态转移方程：
 ```js
 d[i, j] = A[i] == B[j] ? d[i - 1, j - 1] + 1 : 0

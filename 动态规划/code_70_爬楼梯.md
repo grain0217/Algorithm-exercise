@@ -28,7 +28,7 @@
 dp[i] = dp[i - 1] + dp[i - 2]
 ```
 
-#### 递归
+### 递归
 ```js
 function climbStairs = (n) {
   if (n <= 2) return n
@@ -36,7 +36,7 @@ function climbStairs = (n) {
 }
 ```
 
-#### 迭代
+### 迭代
 ```js
 function climbStairs = (n) {
   const dp = [undefined, 1, 2]

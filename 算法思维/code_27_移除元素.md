@@ -22,7 +22,7 @@
 注意这五个元素可为任意顺序。
 ```
 
-拷贝覆盖：
+### 拷贝覆盖：
 
 ```js
 function removeElement (nums, val) {

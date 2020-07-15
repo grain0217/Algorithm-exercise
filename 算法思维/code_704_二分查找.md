@@ -19,7 +19,7 @@
 - `n`将在`[1, 10000]`之间。
 - `nums`的每个元素都将在`[-9999, 9999]`之间。
 
-#### 递归二分查找
+### 递归二分查找
 ```js
 function binary_search (arr, left, right, target) {
   // const mid = ~~((left + right) / 2)
@@ -40,7 +40,7 @@ function binary_search (arr, left, right, target) {
 }
 ```
 
-#### 非递归的二分查找
+### 非递归的二分查找
 ```js
 function binary_search (arr, target) {
   let left = 0

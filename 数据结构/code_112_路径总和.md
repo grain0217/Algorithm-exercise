@@ -15,7 +15,7 @@
 ```
 返回`true`, 因为存在目标和为`22`的根节点到叶子节点的路径 `5->4->11->2`。
 
-#### 递归
+### 递归
 ```js
 function hasPathSum (root, sum) {
   if (!root) return false
@@ -30,7 +30,7 @@ function hasPathSum (root, sum) {
 时间复杂度`O(n)`，`n`是树节点数，因为要对每个节点访问一次。
 空间复杂度`O(H)`，`H`是树的高度。
 
-#### 广度优先搜索
+### 广度优先搜索
 [广度优先搜索](https://leetcode-cn.com/problems/path-sum/solution/lu-jing-zong-he-by-leetcode-solution/)
 
 ```js

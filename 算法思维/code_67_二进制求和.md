@@ -20,6 +20,7 @@
 - `1 <= a.length, b.length <= 10^4`
 - 字符串如果不是`0`，就都不含前导零。
 
+### 逐位相加
 倒序遍历字符串，用数组依次存储每一位的和。
 ```js
 function addBinary (a, b) {
@@ -47,3 +48,8 @@ function addBinary (a, b) {
   return sum.join('')
 }
 ```
+
+时间复杂度`O(max(m, n))`，空间复杂度`O(1)`，`m`、`n`分别为两个字符串的长度。
+
+### 位运算
+

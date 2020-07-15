@@ -7,7 +7,7 @@
 当删除了倒数第二个节点后，链表变为 1->2->3->5.
 ```
 
-#### 数组存储
+### 数组存储
 ```js
 /**
  * Definition for singly-linked list.
@@ -39,7 +39,7 @@ function removeNthFromEnd (head, n) {
 
 也可以通过两次遍历，先遍历计算链表的长度`len`，然后遍历找到第`len - (n + 1)`个节点。 这样时间复杂度仍为`O(n)`，但空间复杂度降为`O(1)`。
 
-#### 双指针
+### 双指针
 ![双指针删除倒数节点](https://pic.leetcode-cn.com/cc43daa8cbb755373ce4c5cd10c44066dc770a34a6d2913a52f8047cbf5e6e56-file_1559548337458)
 
 ```js

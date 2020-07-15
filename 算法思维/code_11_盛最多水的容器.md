@@ -11,7 +11,7 @@
 输出：49
 ```
 
-#### 穷举
+### 暴力求解
 ```js
 function maxArea (height) {
   const len = height.length
@@ -28,7 +28,7 @@ function maxArea (height) {
 
 时间复杂度`O(n^2)`，空间复杂度`O(1)`。
 
-#### 双指针
+### 双指针
 ```js
 function maxArea (height) {
   const len = height.length

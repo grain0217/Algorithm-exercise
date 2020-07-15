@@ -10,6 +10,7 @@
 所以返回 [0, 1]
 ```
 
+### 暴力求解
 直观可以想到的暴力方法：
 ```js
 function find_index (nums, target) {
@@ -24,6 +25,7 @@ function find_index (nums, target) {
 }
 ```
 
+### 哈希表
 利用哈希表，节省一层遍历：
 ```js
 function find_index_new (nums, target) {

@@ -21,7 +21,7 @@
 **进阶：**
 你可以运用递归和迭代两种方法解决这个问题吗？
 
-#### 递归
+### 递归
 ```js
 function isSymmetric (root) {
   if (!root) return true
@@ -36,4 +36,4 @@ function isSame (node1, node2) {
 }
 ```
 
-#### 迭代
+### 迭代

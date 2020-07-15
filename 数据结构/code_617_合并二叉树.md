@@ -30,7 +30,7 @@ function TreeNode(val) {
 }
 ```
 
-#### 递归
+### 递归
 ```js
 function mergeTrees (t1, t2) {
   if (!t1) {
@@ -46,7 +46,7 @@ function mergeTrees (t1, t2) {
 }
 ```
 
-#### 迭代
+### 迭代
 ```
 // todo
 ```

@@ -28,7 +28,7 @@ function TreeNode(val) {
 }
 ```
 
-#### 递归
+### 递归
 ```js
 function invertTree (root) {
   if (!root) return root
@@ -39,7 +39,7 @@ function invertTree (root) {
 }
 ```
 
-#### 迭代
+### 迭代
 ```js
 function invertTree (root) {
 }

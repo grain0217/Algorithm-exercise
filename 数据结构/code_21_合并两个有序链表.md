@@ -6,7 +6,7 @@
 输出：1->1->2->3->4->4
 ```
 
-#### 迭代
+### 迭代
 ```js
 /**
  * Definition for singly-linked list.
@@ -41,7 +41,7 @@ function mergeTwoLists (l1, l2) {
 
 时间复杂度`O(n+m)`，`n`、`m`分别为两个链表的长度，空间复杂度`O(1)`。
 
-#### 递归
+### 递归
 ```js
 function mergeTwoLists (l1, l2) {
   if (!l1) return l2
