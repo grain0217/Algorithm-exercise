@@ -61,10 +61,37 @@ exection -> execution (插入 'u')
 - 字符串`A`为空，如从空转换到`ro`，显然编辑距离为字符串`B`的长度，这里是`2`；
 - 字符串`B`为空，如从`horse`转换到 ，显然编辑距离为字符串`A`的长度，这里是`5`。
 
-因此，我们就可以使用动态规划来解决这个问题了。我们用`dp[i][j]`表示`A`的前`i`个字母和`B`的前`j`个字母之间的编辑距离。
+因此，我们就可以使用动态规划来解决这个问题了。我们用`dp[i][j]`表示`A`的前`i`个字母和`B`的前`j`个字母之间的编辑距离：
+```js
+dp[i][j] = A[i] === B[j] ? dp[i - 1][j - 1] : 1 + Math.min(dp[i][j - 1], dp[i - 1][j], dp[i - 1][j - 1])
+```
 
+代码：
 ```js
 function minDistance (word1, word2) {
-
+  const m = word1.length
+  const n = word2.length
+  const dp = []
+  if (m * n === 0) return m + n
+  for (let i = 0; i <= m; i++) {
+    dp[i] = []
+    for (let j = 0; j <= n; j++) {
+      if (i === 0) {
+        dp[i][j] = j
+      } else if (j === 0) {
+        dp[i][j] = i
+      } else if (word1.charAt(i - 1) === word2.charAt(j - 1)) {
+        dp[i][j] = dp[i - 1][j - 1]
+      } else {
+        // dp[i][j - 1] word1[i]后插入word2[j]
+        // dp[i - 1][j] 删除word1[i]
+        // dp[i - 1][j - 1] word1[i]替换为word2[j]
+        dp[i][j] = 1 + Math.min(dp[i][j - 1], dp[i - 1][j], dp[i - 1][j - 1])
+      }
+    }
+  }
+  return dp[m][n]
 }
 ```
+
+出口在当其中一个为空串，返回另一个字符串的长度，因此状态的定义`dp[i][j]`为`A`的前`i`个字母和`B`的前`j`个字母的编辑距离。
