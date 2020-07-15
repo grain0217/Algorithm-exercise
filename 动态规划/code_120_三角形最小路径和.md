@@ -32,8 +32,10 @@ function minimumTotal (triangle) {
   const len = triangle.length
   let min = Number.MAX_SAFE_INTEGER
   for (let i = 1; i < len; i++) {
+    // j = 0
     dp[i] = [dp[i - 1][0] + triangle[i][0]]
     for (let j = 1; j <= i; j++) {
+      // j = i 时 dp[i - 1][j] 不存在
       dp[i][j] = Math.min(dp[i - 1][j] === undefined ? min : dp[i - 1][j], dp[i - 1][j - 1]) + triangle[i][j]
     }
   }
@@ -49,7 +51,7 @@ function minimumTotal (triangle) {
 ### 动态规划 + 空间优化
 在上述代码中，我们定义了一个`n`行`n`列的`dp`数组。
 
-但是在实际递推中我们发现，计算`dp[i][j]`时，只用到了上一行的`dp[i - 1][j]`和`dp[i - 1][j - 1]`，对此我们可以仅使用两个一维数组进行优化：
+但是在实际递推中我们发现，计算`dp[i][j]`时，只用到了上一行的`dp[i - 1][j]`和`dp[i - 1][j - 1]`，对此我们可以仅使用两个一维数组进行优化——根据`i`的奇偶性交替使用`dp[i]`:
 ```js
 function minimumTotal (triangle) {
   const dp = [[triangle[0][0]], []]
@@ -57,13 +59,16 @@ function minimumTotal (triangle) {
   let min = Number.MAX_SAFE_INTEGER
   for (let i = 1; i < len; i++) {
     const cur =  i % 2
-    dp[cur].push(dp[1 - cur][0] + triangle[i][0])
+    // j = 0
+    dp[cur] = [dp[1 - cur][0] + triangle[i][0]]
     for (let j = 1; j < i; j++) {
-      dp[cur][j] = Math.min(dp[1 - cur][j] === undefined ? min : dp[1 - cur][j], dp[1 - cur][j - 1]) + triangle[i][j]
+      dp[cur][j] = Math.min(dp[1 - cur][j], dp[1 - cur][j - 1]) + triangle[i][j]
     }
+    // j = i
+    dp[cur][i] = dp[1 - cur][i - 1] + triangle[i][i]
   }
   for (let m = 0; m < triangle[len - 1].length; m++) {
-    min = Math.min(min, dp[(len - 1)% 2][m])
+    min = Math.min(min, dp[(len - 1) % 2][m])
   }
   return min
 }
