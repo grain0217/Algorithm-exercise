@@ -48,3 +48,35 @@
 ```
 
 **注意**: 二叉树的高度在范围`[1, 10]`中。
+
+### 递归
+创建一个长度为：`height × (2 ^ height − 1)`的数组`res`，其中`height`是树的高度。
+- 先使用空字符串`""`填充数组`res`。
+- 然后递归调用`fill(res, root, i, l, r)`将节点的值输出到数组`res`中，其中`i`表示当前节点所在层数，`l`和`r`表示当前子树在数组`res`中的左右边界，当前节点被输出到数组`res`第`i`行的第`l`列和第`r`列中间位置上。
+```js
+function printTree (root) {
+	const h = getLength(root)
+	const arr = []
+	for (let i = 0; i < h; i++) {
+        arr[i] = []
+		for (let j = 0; j < Math.pow(2, h) - 1; j++) {
+			arr[i][j] = ""
+		}
+	}
+	fill(arr, root, 0, 0, Math.pow(2, h) - 2)
+	return arr
+}
+
+function fill (arr, root, i, left, right) {
+	if (!root) return
+	const mid = (left + right) / 2
+	arr[i][mid] = root.val.toString()
+	fill(arr, root.left, i + 1, left, mid - 1)
+	fill(arr, root.right, i + 1, mid + 1, right)
+}
+
+function getLength (node) {
+	if (!node) return 0
+	return 1 + Math.max(getLength(node.left), getLength(node.right))
+}
+```
