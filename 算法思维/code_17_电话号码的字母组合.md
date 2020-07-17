@@ -26,24 +26,26 @@ function letterCombinations (digits) {
     8: 'tuv',
     9: 'wxyz'
   }
+
+  // 每次递归取digits中最后一个数字
   const len = digits.length
   const digit = digits.charAt(len - 1)
   const chars = map[digit]
+  const output = []
 
   // 边界情况
-  if (!len) return []
+  if (!len) return output
   // 递归出口
   if (len === 1) return chars.split('')
 
-  const ret = []
   const _digits = digits.slice(0, -1)
   const _nextCombination = letterCombinations(_digits)
   _nextCombination.forEach(set => {
     for (let char of chars) {
-      ret.push(set + char)
+      output.push(set + char)
     }
   })
-  return ret
+  return output
 }
 ```
 
