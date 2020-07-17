@@ -30,7 +30,9 @@ function letterCombinations (digits) {
   const digit = digits.charAt(len - 1)
   const chars = map[digit]
 
+  // 边界情况
   if (!len) return []
+  // 递归出口
   if (len === 1) return chars.split('')
 
   const ret = []
@@ -42,5 +44,41 @@ function letterCombinations (digits) {
     }
   })
   return ret
+}
+```
+
+### 回溯
+```js
+function letterCombinations (digits) {
+  const output = []
+  const map = {
+    2: 'abc',
+    3: 'def',
+    4: 'ghi',
+    5: 'jkl',
+    6: 'mno',
+    7: 'pqrs',
+    8: 'tuv',
+    9: 'wxyz'
+  }
+
+  function backtrack(combination, next_digits) {
+    if (next_digits.length === 0) {
+      output.push(combination)
+    } else {
+      const digit = next_digits.substring(0, 1)
+      const chars = map[char]
+
+      for (let i = 0; i < chars.length; i++) {
+        const char = chars.charAt(i)
+        backtrack(combination + char, next_digits.substr(1))
+      }
+    }
+  }
+
+  if (digits.length !== 0) {
+    backtrack('', digits)
+  }
+  return output
 }
 ```
