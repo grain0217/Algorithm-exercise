@@ -24,6 +24,7 @@ function permute (nums) {
       output.push(combination)
     } else {
       for (let i = 0; i < next_nums.length; i++) {
+        // _nums 选择列表
         const _nums = [...next_nums]
         const cur = _nums.splice(i, 1)
         backtrack(combination.concat(cur), _nums)

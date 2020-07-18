@@ -15,3 +15,26 @@
 **注意：**
 - `S`的长度不超过`12`。
 - `S`仅由数字和字母组成。
+
+### 回溯
+```js
+function letterCasePermutation (S) {
+  const output = []
+  const len = S.length
+  function trackback(combination, index) {
+    if (combination.length === len) {
+      output.push(combination)
+    } else {
+      if (isNaN(S.charAt(index))) {
+        trackback(combination + S.charAt(index).toLowerCase(), index + 1)
+        trackback(combination + S.charAt(index).toUpperCase(), index + 1)
+      } else {
+        trackback(combination + S.charAt(index), index + 1)
+      }
+    }
+  }
+
+  trackback('', 0)
+  return output
+}
+```
