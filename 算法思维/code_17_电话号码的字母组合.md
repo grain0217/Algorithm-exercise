@@ -38,6 +38,7 @@ function letterCombinations (digits) {
   // 递归出口
   if (len === 1) return chars.split('')
 
+  // 从后向前递归
   const _digits = digits.slice(0, -1)
   const _nextCombination = letterCombinations(_digits)
   _nextCombination.forEach(set => {
@@ -70,7 +71,8 @@ function letterCombinations (digits) {
     } else {
       const digit = next_digits.substring(0, 1)
       const chars = map[char]
-
+      
+      // 从前向后
       for (let i = 0; i < chars.length; i++) {
         const char = chars.charAt(i)
         backtrack(combination + char, next_digits.substr(1))
