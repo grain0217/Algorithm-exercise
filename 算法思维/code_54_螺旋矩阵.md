@@ -22,32 +22,54 @@
 输出: [1,2,3,4,8,12,11,10,9,5,6,7]
 ```
 
-### 找规律
+### 找规律，按层模拟
 ```js
 function spiralOrder (matrix) {
-  const m = matrix.length
-  const n = matrix[0].length
-  const midRow = m >> 1
-  const midCol = n >> 1
+  // 边界情况
+  if (!matrix || !matrix.length || !matrix[0] || !matrix[0].lengtg) return matrix
+
+  const rows = matrix.length
+  const columns = matrix[0].length
   const output = []
-  let i = 0, j = 0
-  if (n > m) {
-    while (j < midCol) {
-      for (let p = j; p < n - j - 1; p++) {
-        output.push(matrix[j][p])
+  let left = 0,
+    right = columns - 1,
+    top = 0,
+    bottom = rows - 1
+
+  while (left <= right && top <= bottom) {
+    if (left === right) {
+      for (let i = top; i <= bottom; i++) {
+        output.push(matrix[i][right])
       }
-      for (let p = j; p < m - j - 1; p++) {
-        output.push(matrix[p][n - j - 1])
+      break
+    } else if (top === bottom) {
+      for (let i = left; i <= right; i++) {
+        output.push(matrix[top][i])
       }
-      for (let p = n - j - 1; p > 0; p--) {
-        output.push(matrix[m - j - 1][p])
+      break
+    } else {
+      // 从左向右
+      for (let i = left; i <= right; i++) {
+        output.push(matrix[top][i])
       }
-      for (let p = m - j - 1; p > 0; p--) {
-        output.push(matrix[p][j])
+      // 从上向下
+      for (let i = top + 1; i <= bottom; i++) {
+        output.push(matrix[i][right])
+      }
+      // 从右向左
+      for (let i = right - 1; i >= left + 1; i--) {
+        output.push(matrix[bottom][i])
+      }
+      // 从下向上
+      for (let i = bottom; i > top; i--) {
+        output.push(matrix[i][left])
       }
     }
-    j++
-  } else {}
+    left++
+    right--
+    top++
+    bottom--
+  }
   return output
 }
 ```
