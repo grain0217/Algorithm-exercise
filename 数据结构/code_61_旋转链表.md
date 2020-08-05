@@ -20,8 +20,9 @@
 向右旋转 4 步: 2->0->1->NULL
 ```
 
+### 双指针
 ```js
-rotateRight = function(head, k) {
+function rotateRight (head, k) {
   // 边界case1
   if (!head) return head
   let i = 0
