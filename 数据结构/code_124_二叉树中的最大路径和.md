@@ -27,7 +27,20 @@
 ```
 
 ```js
-function maxPathSum = function(root) {
-	
+function maxPathSum (root) {
+	const resultArr = []
+
+	function helper (node) {
+		if (node == null) return 0
+
+		let leftPathVal = Math.max(helper(node.left), 0)
+		let rightPathVal = Math.max(helper(node.right), 0)
+
+		resultArr.push(leftPathVal + rightPathVal + node.val)
+		return Math.max(leftPathVal, rightPathVal) + node.val
+	}
+
+	resultArr.push(helper(root))
+	return Math.max.apply(null,resultArr)
 }
 ```
