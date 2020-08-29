@@ -43,7 +43,41 @@ function myPow (x, n) {
     return 1 / myPow(x, -n)
   } else {
     if (n % 2) return myPow(x, n - 1) * x
-    return myPow(x * x, n % 2)
+    return myPow(x * x, n / 2)
   }
+}
+```
+
+### 二进制
+```js
+function myPow (x, n) {
+  if (n === 0) return 1
+  if (n < 0) return  1 / myPow(x, -n)
+  let result = 1
+  while (n > 0) {
+    if (n & 1) {
+      result = result * x
+    }
+    x = x * x
+    n = n >> 1
+  }
+  return result
+}
+```
+
+边界case：2147483648 >> 1 === -1073741824
+```js
+function myPow (x, n) {
+  if (n === 0) return 1
+  if (n < 0) return (1 / x) * myPow((1 / x), -(n + 1))
+  let result = 1
+  while (n > 0) {
+    if (n & 1) {
+      result = result * x
+    }
+    x = x * x
+    n = n >> 1
+  }
+  return result
 }
 ```
