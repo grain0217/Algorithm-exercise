@@ -30,17 +30,40 @@
 返回 false 。
 ```
 
-### 递归
+### 自顶向下
 ```js
 function isBalanced (root) {
   if (!root) return true
-  return isBalanced(root.left)
-    && isBalanced(root.right)
+  // 先序遍历
+  return 
     && Math.abs(length(root.left) - length(root.right)) <= 1
+    && isBalanced(root.right)
+    && isBalanced(root.left)
 }
 
 function length (root) {
   if (!root) return 0
   return 1 + Math.max(length(root.left), length(root.right))
+}
+```
+
+### 自底向上
+```js
+function isBalanced (root) {
+  returrn recur(root) != -1
+}
+
+function recur(root) {
+  if (!root) return 0
+  // 后序遍历
+  const left = recur(root.left)
+  if (left === -1) return -1
+  const right = recur(root.right)
+  if (right === -1) return -1
+  if (Math.abs(left- right) <= 1) {
+    return Math.max(left, right)
+  } else {
+    return - 1
+  }
 }
 ```
