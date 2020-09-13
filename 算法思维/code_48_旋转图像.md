@@ -3,7 +3,6 @@
 将图像顺时针旋转`90`度。
 
 **说明：**
-
 你必须在原地旋转图像，这意味着你需要直接修改输入的二维矩阵。请不要使用另一个矩阵来旋转图像。
 
 **示例 1:**
@@ -45,11 +44,19 @@
 ###
 ```js
 function rotate (matrix) {
-  if (!matrix || !matrix.length) return []
-  const n = matrix.length
-  for (let i = 0; i < n; i++) {
-    for (let j = i; j < n; j++) {
+  const n = matrix.length - 1
+  for (let i = 0; i < n >> 1; i++) {
+    for (let j = i; j < n - i - 1; j++) {
+      const tmp = matrix[i][j]
+      matrix[i][j] = matrix[n - j][i]
+      matrix[n - j][i] = matrix[n - i][n - j]
+      matrix[n - i][n - j] = matrix[j][n - i]
+      matrix[j][n - i] = tmp
     }
   }
 }
 ```
+
+画一下图：
+
+![旋转矩阵点的对应关系](https://p.pstatp.com/origin/1374b00012b10e84dd965)
