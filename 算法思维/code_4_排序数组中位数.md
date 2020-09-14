@@ -34,7 +34,7 @@ B[0], B[1], ..., B[j-1]  |  B[j], B[j+1], ..., B[n-1]
 median = [max(left_part) + min(right_part)] / 2
 ```
 
-同理，当`m+n`为偶数时，如果满足：
+同理，当`m+n`为奇数时，如果满足：
 - length(left_part) = length(right_part) + 1
 - max(left_part) <= min(right_part)
 
