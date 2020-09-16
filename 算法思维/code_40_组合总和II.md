@@ -33,7 +33,7 @@
 function combinationSum2 (candidates, target) {
   const _candidates = candidates.sort((a, b) => a - b)
   const combination = []
-  const len = candidates.length
+  const len = _candidates.length
 
   function backtrack (_combination, start) {
     const sum = _combination.reduce((a, b) => {
@@ -41,17 +41,21 @@ function combinationSum2 (candidates, target) {
     }, 0)
     if (sum === target) {
       combination.push(_combination)
-    } else if (sum + candidates[start] <= target) {
+    } else if (sum + _candidates[start] <= target) {
       for (let i = start; i < len; i++) {
         const __combination = [..._combination]
-        if (sum + candidates[i] <= target) {
-          __combination.push(candidates[i])
+        if (sum + _candidates[i] <= target) {
+          // 去重！！
+          if (i > start && _candidates[i] === _candidates[i - 1]) continue
+          __combination.push(_candidates[i])
           backtrack(__combination, i + 1)
         }
       }
     }
   }
+  backtrack([], 0)
+  return combination
 }
 ```
 
-未去重。
+注意去重的处理，在同一层中相同的元素pass掉。
