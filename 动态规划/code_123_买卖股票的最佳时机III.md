@@ -28,8 +28,29 @@
 解释: 在这个情况下, 没有交易完成, 所以最大利润为 0。
 ```
 
+### 动态规划
+定义dp[i]为第`i`天的最大收益：
+- dp[i][0]: 处于未交易状态
+- dp[i][1]: 处于买入一次状态
+- dp[i][2]: 处于卖出一次状态
+- dp[i][0]: 处于买入两次状态
+- dp[i][0]: 处于卖出两次状态
 ```js
 function maxProfit (prices) {
-
+  const len = prices.length
+  const Max = Number.MAX_SAFE_INTEGER
+  const Min = Number.MIN_SAFE_INTEGER
+  const dp = [
+    [0, -prices[0], Min, Min, Min]
+  ]
+  for (let i = 1; i < len; i++) {
+    dp[i] = []
+    dp[i][0] = 0
+    dp[i][1] = Math.max(-prices[i],  dp[i - 1][1] || Min)
+    dp[i][2] = Math.max(prices[i] - (dp[i - 1][1] || Max), dp[i - 1][2] || Min)
+    dp[i][3] = Math.max((dp[i - 1][2] || Min) - prices[i], dp[i - 1][3] || Min)
+    dp[i][4] = Math.max((dp[i - 1][3] || Min) + prices[i], dp[i - 1][4] || Min)
+  }
+  return Math.max(dp[len - 1][2], dp[len - 1][4])
 }
 ```
