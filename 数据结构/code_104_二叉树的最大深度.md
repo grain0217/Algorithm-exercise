@@ -16,39 +16,18 @@
 返回它的最大深度 3 。
 ```
 
-### 递归
+### 深度优先的递归实现
 ```js
-function maxDepth = (root) {
+function maxDepth (root) {
   if (!root) return 0
   // 深度优先DFS
   return 1 + Math.max(maxDepth(root.left), maxDepth(root.right))
 }
 ```
 
-### 广度优先BFS
+### 深度优先的非递归实现
 ```js
-function maxDepth = (root) {
-  if (!root) return 0
-  const queue = [root]
-  let maxDeep = 0
-
-  while(queue.length) {
-    let len = queue.length
-    // 用len将本层节点遍历全
-    while (len--) {
-      const node = queue.shift()
-      if (first.left) node.push(first.left)
-      if (first.right) node.push(first.right)
-    }
-    maxDeep++
-  }
-  return maxDeep
-}
-```
-
-### 深度优先DFS的非递归实现
-```js
-function maxDepth = (root) {
+function maxDepth (root) {
   if (!root) return 0
   let maxDeep = 0
   const stack = [[root, 1]]
@@ -69,4 +48,25 @@ function maxDepth = (root) {
 }
 ```
 
-一般广度优先借助队列实现，而非递归的深度优先借助栈实现。
+### 广度优先
+```js
+function maxDepth (root) {
+  if (!root) return 0
+  const queue = [root]
+  let maxDeep = 0
+
+  while(queue.length) {
+    let len = queue.length
+    // 用len将本层节点遍历全
+    while (len--) {
+      const node = queue.shift()
+      if (node.left) queue.push(node.left)
+      if (node.right) queue.push(node.right)
+    }
+    maxDeep++
+  }
+  return maxDeep
+}
+```
+
+一般广度优先借助队列(先进先出）实现，而非递归的深度优先借助栈（先进后出）实现。
