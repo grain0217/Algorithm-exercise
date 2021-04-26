@@ -24,7 +24,7 @@ function reverseList (head) {
     
     cur.next = pre
 
-    // prev 记录上一个节点
+    // pre 记录上一个节点
     pre = cur
   }
   return cur

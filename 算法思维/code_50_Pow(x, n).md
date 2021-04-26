@@ -48,7 +48,7 @@ function myPow (x, n) {
 }
 ```
 
-### 二进制
+### 位运算
 ```js
 function myPow (x, n) {
   if (n === 0) return 1

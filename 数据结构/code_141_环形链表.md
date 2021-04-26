@@ -32,21 +32,24 @@
 **进阶**：
 你能用`O(1)`内存解决此问题吗？
 
-### Map
+### 1. Map
 ```js
 function hasCycle (head) {
   const map = new Map()
   if (!head) return false
   while (head) {
-    if (map.get(head) === head) return true
-    map.set(head, head)
-    head = head.next
+    if (map.get(head) === undefined) {
+      map.set(head, head)
+      head = head.next
+    } else {
+      return true
+    }
   }
   return false
 }
 ```
 
-### 双指针
+### 2. 双指针
 ```js
 function hasCycle (head) {
   let fast = head
